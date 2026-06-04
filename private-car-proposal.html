@@ -1,0 +1,1504 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SLIC - Private Car Proposal Form</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --slic-blue: #003087;
+      --slic-red: #c8102e;
+      --ink: #111827;
+      --bg: #f5f3ef;
+      --paper: #fafaf8;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Source Sans 3', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      padding: 24px 16px;
+    }
+
+    .form-wrapper {
+      max-width: 940px;
+      margin: 0 auto;
+    }
+
+    /* Toolbar */
+    .toolbar {
+      display: flex;
+      justify-content: flex-end;
+      align-items: right;
+      margin-bottom: 20px;
+      padding: 12px 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 1px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .toolbar-title {
+      font-family: 'EB Garamond', serif;
+      font-size: 15px;
+      color: var(--slic-blue);
+      font-weight: 600;
+    }
+
+
+    /* button styled */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 9px 20px;
+      border-radius: 6px;
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      border: none;
+      transition: all 0.18s ease;
+    }
+
+    .btn-primary {
+      background: var(--slic-blue);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #002070;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0, 48, 135, 0.3);
+    }
+
+    .btn-secondary {
+      background: white;
+      color: var(--slic-blue);
+      border: 1.5px solid var(--slic-blue);
+    }
+
+    .btn-secondary:hover {
+      background: #f0f4ff;
+    }
+
+    /* Page */
+    .form-page {
+      background: var(--paper);
+      border: 1px solid #d1cdc6;
+      box-shadow: 0 4px 32px rgba(0, 0, 0, 0.12);
+      padding: 36px 44px;
+      margin-bottom: 32px;
+      position: relative;
+    }
+
+    .page-break-label {
+      text-align: center;
+      font-size: 10px;
+      color: #9ca3af;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin: -16px 0 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .page-break-label::before,
+    .page-break-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #d1d5db;
+    }
+
+    /* Header */
+    .header-box {
+      border: 1px solid var(--slic-blue);
+      display: flex;
+      align-items: center;
+      margin-bottom: 0;
+    }
+
+    .logo {
+      color: white;
+      padding: 0.2rem 0.5rem;
+      display: flex;
+      align-items: left;
+      justify-content: left;
+      width: 120px;
+      height: 120px;
+    }
+
+    .logo-inner {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+
+    .title-cell {
+      flex: 1;
+      padding: 0.7rem 1rem;
+      text-align: center;
+    }
+
+    .label {
+      font-weight: 700;
+      font-size: 10px;
+      margin-bottom: 5px;
+    }
+
+    .field-label {
+      font-size: 9.5px;
+      color: #6b7280;
+      margin-bottom: 2px;
+    }
+
+    .field-line {
+      border-bottom: 1px solid #9ca3af;
+      margin-bottom: 6px;
+      padding-bottom: 2px;
+      min-height: 20px;
+    }
+
+    .field-input {
+      border: none;
+      background: transparent;
+      flex: 1;
+      min-width: 0;
+      outline: none;
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 11px;
+      color: var(--ink);
+      padding: 0 2px;
+    }
+
+    .field-input:focus {
+      border-bottom: 1px solid var(--slic-blue);
+    }
+
+    .field-input::placeholder {
+      color: #c5bfb0;
+      font-size: 10px;
+    }
+
+    .field-input:not(:placeholder-shown) {
+      color: #1e3a8a;
+      font-weight: 600;
+    }
+
+    textarea.field-input {
+      resize: none;
+      min-height: 26px;
+      line-height: 1.4;
+      width: 100%;
+    }
+
+    /* Section */
+    .sec-label {
+      font-weight: 700;
+      font-size: 10.5px;
+      margin-bottom: 5px;
+    }
+
+    .question-row {
+      display: grid;
+      grid-template-columns: 1fr 200px;
+      gap: 8px;
+      margin-bottom: 6px;
+      align-items: start;
+    }
+
+    .q-text {
+      font-size: 11px;
+      line-height: 1.45;
+    }
+
+    .q-answer {
+      border-bottom: 1px solid #9ca3af;
+      min-height: 18px;
+    }
+
+    .notice-box {
+      font-size: 10.5px;
+      line-height: 1.55;
+      margin-bottom: 16px;
+      border: 1px solid #d1d5db;
+      padding: 8px 12px;
+      background: #fff;
+    }
+
+    .notice-box strong {
+      color: #8b0000;
+    }
+
+    /* Main table layout */
+    .main-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 11px;
+    }
+
+    .main-table td,
+    .main-table th {
+      border: 1px solid #9ca3af;
+      padding: 5px 8px;
+      vertical-align: top;
+    }
+
+    .office-box-header {
+      text-align: center;
+      font-weight: 700;
+      font-size: 10px;
+      background: #f0f4ff;
+      letter-spacing: 0.04em;
+    }
+
+    .office-label {
+      font-size: 9.5px;
+      color: #6b7280;
+    }
+
+    .office-field {
+      border-bottom: 0.5px solid #bbb;
+      min-height: 16px;
+      margin-bottom: 4px;
+    }
+
+    /* Field lines */
+    .field-line {
+      display: flex;
+      align-items: flex-end;
+      gap: 6px;
+      border-bottom: 1px solid #9ca3af;
+      margin-bottom: 6px;
+      padding-bottom: 2px;
+      min-height: 20px;
+    }
+
+    .field-label-inline {
+      font-size: 10.5px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .field-input {
+      border: none;
+      background: transparent;
+      flex: 1;
+      min-width: 0;
+      outline: none;
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 11px;
+      color: var(--ink);
+      padding: 0 2px;
+    }
+
+    .field-input:focus {
+      border-bottom: 1px solid var(--slic-blue);
+    }
+
+    .field-input::placeholder {
+      color: #c5bfb0;
+      font-size: 10px;
+    }
+
+    .field-input:not(:placeholder-shown) {
+      color: #1e3a8a;
+      font-weight: 600;
+    }
+
+    textarea.field-input {
+      resize: none;
+      min-height: 26px;
+      line-height: 1.4;
+      width: 100%;
+    }
+
+    /* Section */
+    .sec-label {
+      font-weight: 700;
+      font-size: 10.5px;
+      margin-bottom: 5px;
+    }
+
+    .question-row {
+      display: grid;
+      grid-template-columns: 1fr 200px;
+      gap: 8px;
+      margin-bottom: 6px;
+      align-items: start;
+    }
+
+    .q-text {
+      font-size: 11px;
+      line-height: 1.45;
+    }
+
+    .q-answer {
+      border-bottom: 1px solid #9ca3af;
+      min-height: 18px;
+    }
+
+    /* Answer column rows */
+    .ans-a {
+      font-size: 9px;
+      color: #6b7280;
+      margin-bottom: 2px;
+    }
+
+    /* Table for accessories */
+    .acc-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 10px;
+      margin: 6px 0;
+    }
+
+    .acc-table th {
+      background: #f0f4ff;
+      border: 1px solid #9ca3af;
+      padding: 4px 6px;
+      text-align: center;
+      font-size: 9.5px;
+      font-weight: 700;
+    }
+
+    .acc-table td {
+      border: 1px solid #d1d5db;
+      padding: 3px 6px;
+      min-height: 18px;
+    }
+
+    .acc-table input {
+      border: none;
+      background: transparent;
+      width: 100%;
+      outline: none;
+      font-size: 10px;
+    }
+
+    /* Yes/No radio inline */
+    .yn-group {
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      font-size: 11px;
+    }
+
+    .yn-group label {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      cursor: pointer;
+    }
+
+    .yn-group input {
+      accent-color: var(--slic-blue);
+      width: 12px;
+      height: 12px;
+    }
+
+    /* Big questions table */
+    .q-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 11px;
+    }
+
+    .q-table td {
+      border: 1px solid #9ca3af;
+      padding: 6px 10px;
+      vertical-align: top;
+    }
+
+    .q-table .q-col {
+      width: 70%;
+    }
+
+    .q-table .a-col {
+      width: 30%;
+    }
+
+    /* Consent */
+    .consent-text {
+      font-size: 9.5px;
+      line-height: 1.6;
+      text-align: justify;
+      font-style: italic;
+      color: #374151;
+    }
+
+    /* Signature */
+    .sig-line {
+      border-top: 1px solid var(--ink);
+      padding-top: 3px;
+      font-size: 9.5px;
+      color: #6b7280;
+    }
+
+    /* Benefits page */
+    .benefits-section {
+      margin-bottom: 10px;
+    }
+
+    .benefits-title {
+      font-weight: 700;
+      font-size: 11px;
+      text-decoration: underline;
+      margin-bottom: 4px;
+    }
+
+    .benefits-sub {
+      font-weight: 700;
+      font-size: 10px;
+      margin-top: 5px;
+      margin-bottom: 2px;
+    }
+
+    .benefits-text {
+      font-size: 10px;
+      line-height: 1.55;
+      margin-bottom: 3px;
+    }
+
+    .benefits-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 10px;
+      margin: 4px 0;
+    }
+
+    .benefits-table td {
+      padding: 2px 6px;
+    }
+
+    .benefits-table .pct {
+      font-weight: 700;
+    }
+
+    /* Print */
+    @media print {
+      @page {
+        size: A4;
+        margin: 10mm 12mm;
+      }
+
+      body {
+        background: white !important;
+        padding: 0 !important;
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+      }
+
+      .toolbar {
+        display: none !important;
+      }
+
+      .form-page {
+        box-shadow: none !important;
+        border: none !important;
+        padding: 0 !important;
+        background: white !important;
+        page-break-after: always;
+        margin-bottom: 0 !important;
+      }
+
+      .form-page:last-child {
+        page-break-after: auto;
+      }
+
+      .page-break-label {
+        display: none !important;
+      }
+
+      .field-input:not(:placeholder-shown) {
+        color: black !important;
+        font-weight: 400 !important;
+      }
+
+      .slic-logo-text {
+        color: black !important;
+      }
+
+      .slic-logo-text span {
+        color: #555 !important;
+      }
+
+      .office-box-header {
+        background: #eee !important;
+      }
+
+      .form-wrapper {
+        max-width: 100% !important;
+      }
+
+      .acc-table th {
+        background: #eee !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="form-wrapper">
+
+    <!-- Toolbar -->
+    <div class="toolbar">
+      <div style="display:flex;gap:10px; align-items:right; ">
+       <button class="btn btn-secondary" onclick="clearForm()">Clear Form</button>
+        <button class="btn btn-secondary" onclick="window.print()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <polyline points="6 9 6 2 18 2 18 9" />
+            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" />
+            <rect x="6" y="14" width="12" height="8" />
+          </svg>
+          Print Empty Form
+        </button>
+        <button class="btn btn-primary" onclick="window.print()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <polyline points="6 9 6 2 18 2 18 9" />
+            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" />
+            <rect x="6" y="14" width="12" height="8" />
+          </svg>
+          Print Filled Form
+        </button>
+        
+      </div>
+    </div>
+
+    <!-- ========== PAGE 1 ========== -->
+    <div class="form-page">
+      <!-- SLIC Header -->
+      <div class="header-box">
+        <div class="logo">
+          <img src="Logoas 2.svg" alt="SLIC Logo" class="logo-inner">
+
+        </div>
+
+        <div class="title-cell">
+          <div
+            style="font-family:'IM Fell English',serif; font-size:1.1rem; font-weight:700; letter-spacing:0.5px; color:var(--accent);">
+            PRIVATE CAR PROPOSAL FORM</div>
+        </div>
+         
+      </div>
+      
+
+      <div class="notice-box">
+        <strong>VERY IMPORTANT :</strong> Incorrect answers or failure to disclose all Material facts may render the
+        Insurance in-operative. Material facts are those which would influence acceptance or assessment of the insurance
+        risk. If you are in doubt, please disclose them or seek advise from your Agent or the Company.
+      </div>
+
+      
+
+      <!-- Main two-column layout -->
+      <table class="main-table">
+        <tr>
+          <td style="width:70%;border:1px solid #9ca3af;padding:10px 12px;">
+
+            <!-- Q1 Proposer -->
+            <div class="sec-label">1. Proposer's Name in Full &nbsp;Mr./Mrs./Miss.....</div>
+            <div class="field-line">
+              <input class="field-input" type="text" placeholder="Full name">
+              <span class="field-label-inline" style="font-size:10px;">Age</span>
+              <input class="field-input" type="text" placeholder="" style="max-width:70px;">
+            </div>
+            <div class="field-line">
+              <span class="field-label-inline">National Identity card number :</span>
+              <input class="field-input" type="text" placeholder="">
+            </div>
+            <div class="field-line">
+              <span class="field-label-inline">Business Registration Number :</span>
+              <input class="field-input" type="text" placeholder="">
+            </div>
+            <div class="field-line">
+              <span class="field-label-inline">VAT Registration No (If any) :</span>
+              <input class="field-input" type="text" placeholder="">
+            </div>
+            <div class="field-line">
+              <span class="field-label-inline">Postal Address</span>
+              <input class="field-input" type="text" placeholder="">
+            </div>
+            <div class="field-line">
+              <input class="field-input" type="text" placeholder="">
+              <span class="field-label-inline">T.P. No :</span>
+              <input class="field-input" type="tel" placeholder="" style="max-width:130px;">
+            </div>
+            <div class="field-line">
+              <span class="field-label-inline">District :</span>
+              <input class="field-input" type="text" placeholder="" style="max-width:110px;">
+              <span class="field-label-inline">Gramasevaka Division</span>
+              <input class="field-input" type="text" placeholder="">
+            </div>
+            <div class="field-line">
+              <span class="field-label-inline">Business or profession :</span>
+              <input class="field-input" type="text" placeholder="">
+            </div>
+
+            <!-- Q2 Car particulars -->
+            <div class="sec-label" style="margin-top:10px;">2.(a) Particulars of car to be insured:-</div>
+
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:0 10px;">
+              <div class="field-line">
+                <span class="field-label-inline">Registered No :</span>
+                <input class="field-input" type="text" placeholder="">
+              </div>
+              <div class="field-line">
+                <span class="field-label-inline">Make:</span>
+                <input class="field-input" type="text" placeholder="">
+              </div>
+            </div>
+            <div class="field-line">
+              <span class="field-label-inline">Chassis</span>
+              <input class="field-input" type="text" placeholder="">
+            </div>
+            <div class="field-line">
+              <span class="field-label-inline">Engine No:</span>
+              <input class="field-input" type="text" placeholder="">
+            </div>
+            <div style="display:grid;grid-template-columns:1fr auto auto;gap:0 10px;">
+              <div class="field-line">
+                <span class="field-label-inline">Year of Manufacture:</span>
+                <input class="field-input" type="text" placeholder="" style="max-width:70px;">
+              </div>
+              <div class="field-line" style="min-width:90px;">
+                <span class="field-label-inline">H.P /C.C.:</span>
+                <input class="field-input" type="text" placeholder="" style="max-width:60px;">
+              </div>
+              <div class="field-line" style="min-width:130px;">
+                <span class="field-label-inline">Date of 1st Reg</span>
+                <input class="field-input" type="date" style="max-width:110px;">
+              </div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:0 10px;">
+              <div style="font-size:11px;padding:3px 0;">
+                Hybrid / Electrical Vehicle :
+                <label style="margin-left:6px;"><input type="radio" name="hybrid" value="yes"
+                    style="accent-color:var(--slic-blue);"> Yes</label>
+                <label style="margin-left:8px;"><input type="radio" name="hybrid" value="no"
+                    style="accent-color:var(--slic-blue);"> No</label>
+              </div>
+              <div style="font-size:11px;padding:3px 0;">
+                Type of Fuel :
+                <label style="margin-left:4px;"><input type="radio" name="fuel" value="petrol"
+                    style="accent-color:var(--slic-blue);"> Petrol</label>
+                <label style="margin-left:6px;"><input type="radio" name="fuel" value="diesel"
+                    style="accent-color:var(--slic-blue);"> Diesel</label>
+                <label style="margin-left:6px;"><input type="radio" name="fuel" value="gas"
+                    style="accent-color:var(--slic-blue);"> Gas</label>
+              </div>
+            </div>
+            <div class="field-line">
+              <span class="field-label-inline">Seating Capacity including Driver</span>
+              <input class="field-input" type="text" placeholder="" style="max-width:60px;">
+            </div>
+            <div class="field-line">
+              <span class="field-label-inline">Cost Price when new including Accessories : Rs</span>
+              <input class="field-input" type="text" placeholder="">
+            </div>
+            <div class="field-line">
+              <span class="field-label-inline">Date of Purchase :</span>
+              <input class="field-input" type="date" style="max-width:130px;">
+              <span class="field-label-inline">Price Paid by Proposer : Rs</span>
+              <input class="field-input" type="text" placeholder="">
+            </div>
+            <div style="font-size:11px;margin:5px 0;">
+              Vehicle Status :
+              <label style="margin-left:4px;"><input type="radio" name="vstatus" value="new"
+                  style="accent-color:var(--slic-blue);"> Brand new</label>
+              <label style="margin-left:6px;"><input type="radio" name="vstatus" value="reconditioned"
+                  style="accent-color:var(--slic-blue);"> Re conditioned</label>
+              <label style="margin-left:6px;"><input type="radio" name="vstatus" value="secondhand"
+                  style="accent-color:var(--slic-blue);"> Second hand</label>
+              &nbsp;luxury / Semi Luxury Tax Payable :
+              <label style="margin-left:4px;"><input type="radio" name="luxurytax" value="yes"
+                  style="accent-color:var(--slic-blue);"> Yes</label>
+              <label style="margin-left:6px;"><input type="radio" name="luxurytax" value="no"
+                  style="accent-color:var(--slic-blue);"> No</label>
+            </div>
+            <div class="field-line">
+              <span class="field-label-inline" style="font-size:10px;">Proposer's Estimate of present Market Value
+                Including Accessories and extra fittings (see Page 4) * Rs</span>
+              <input class="field-input" type="text" placeholder="">
+            </div>
+            <div style="font-size:10.5px;margin:4px 0;">
+              Do you wish to insure the vehicle on duty free basis :
+              <label><input type="radio" name="dutyfree" value="yes" style="accent-color:var(--slic-blue);"> Yes</label>
+              <label style="margin-left:8px;"><input type="radio" name="dutyfree" value="no"
+                  style="accent-color:var(--slic-blue);"> No</label>
+              , If "Yes" value : Rs
+              <input class="field-input" type="text" placeholder=""
+                style="display:inline-block;max-width:100px;border:none;border-bottom:1px solid #9ca3af;">
+            </div>
+            <div style="font-size:10.5px;margin:4px 0 6px;">(b) Describe Accessories and extra fittings included in the
+              Estimated Value of Car.</div>
+
+            <!-- Accessories table -->
+            <table class="acc-table">
+              <thead>
+                <tr>
+                  <th>Item</th>
+                  <th>Description<br><span style="font-weight:400;font-style:italic;">(e.g) A.C.<br>Alloy wheels
+                      etc.</span></th>
+                  <th>Model<br>and<br>Make</th>
+                  <th>Factory<br>fitted or<br>Purchased</th>
+                  <th>Date of<br>Purchased</th>
+                  <th>Price Paid if<br>Purchased</th>
+                  <th>Estimate of<br>Present Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>(i)</td>
+                  <td><input type="text" placeholder=""></td>
+                  <td><input type="text"></td>
+                  <td><input type="text"></td>
+                  <td><input type="date"></td>
+                  <td><input type="text"></td>
+                  <td><input type="text"></td>
+                </tr>
+                <tr>
+                  <td>(ii)</td>
+                  <td><input type="text"></td>
+                  <td><input type="text"></td>
+                  <td><input type="text"></td>
+                  <td><input type="date"></td>
+                  <td><input type="text"></td>
+                  <td><input type="text"></td>
+                </tr>
+                <tr>
+                  <td>(iii)</td>
+                  <td><input type="text"></td>
+                  <td><input type="text"></td>
+                  <td><input type="text"></td>
+                  <td><input type="date"></td>
+                  <td><input type="text"></td>
+                  <td><input type="text"></td>
+                </tr>
+                <tr>
+                  <td>(iv)</td>
+                  <td><input type="text"></td>
+                  <td><input type="text"></td>
+                  <td><input type="text"></td>
+                  <td><input type="date"></td>
+                  <td><input type="text"></td>
+                  <td><input type="text"></td>
+                </tr>
+                <tr>
+                  <td>(v)</td>
+                  <td><input type="text"></td>
+                  <td><input type="text"></td>
+                  <td><input type="text"></td>
+                  <td><input type="date"></td>
+                  <td><input type="text"></td>
+                  <td><input type="text"></td>
+                </tr>
+              </tbody>
+            </table>
+            <div style="font-size:9.5px;color:#6b7280;margin:4px 0 8px;line-height:1.5;">* Please note that the amount
+              inserted here should be the present market value of the Vehicle. The contract will be voidable in the
+              event of willful understatement of value. If the Value declared is duty free please complete the duty free
+              declaration</div>
+
+            <!-- Q3 -->
+            <div style="margin-bottom:6px;">
+              <div> <strong> 3.</strong> Has the Car specified above been modified in any manner from the manufacture's
+                specifications? If so, give details.</div>
+              <textarea class="field-input border" rows="2" placeholder=""></textarea>
+            </div>
+
+            <!-- Q4 -->
+            <div style="font-size:11px;margin-bottom:6px;">
+              <strong>4.</strong> Is the Motor Car in good condition and repair?&nbsp;
+              <label><input type="radio" name="q4" value="yes" style="accent-color:var(--slic-blue);"> Yes</label>
+              <label style="margin-left:8px;"><input type="radio" name="q4" value="no"
+                  style="accent-color:var(--slic-blue);"> No</label>
+            </div>
+
+            <!-- Q5 -->
+            <div style="margin-bottom:4px;">
+              <div style="font-size:11px;font-weight:700;">5.</div>
+              <div style="display:grid;grid-template-columns:1fr 200px;gap:6px;">
+                <div>
+                  <div style="font-size:11px;">(a) If an individual Proposer. how long have you been driving a Motor
+                    Car?</div>
+                </div>
+                <div>
+                  <div style="font-size:9.5px;color:#6b7280;margin-bottom:2px;">a)</div>
+                  <input class="field-input" type="text" placeholder=""
+                    style="border-bottom:1px solid #9ca3af;width:100%;">
+                </div>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 200px;gap:6px;margin-top:4px;">
+                <div>
+                  <div style="font-size:11px;">(b) &nbsp;i. Have you a valid Certificate of Competence to drive a Motor
+                    Car?</div>
+                  <div style="font-size:11px;margin-top:3px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ii. if so, for how long?
+                  </div>
+                </div>
+                <div>
+                  <div style="font-size:9.5px;color:#6b7280;margin-bottom:2px;">b) i.</div>
+                  <input class="field-input" type="text" placeholder=""
+                    style="border-bottom:1px solid #9ca3af;width:100%;margin-bottom:6px;">
+                  <div style="font-size:9.5px;color:#6b7280;margin-bottom:2px;">b) ii.</div>
+                  <input class="field-input" type="text" placeholder=""
+                    style="border-bottom:1px solid #9ca3af;width:100%;">
+                </div>
+              </div>
+            </div>
+
+          </td>
+          <!-- Office Use column -->
+                    <td style="width:30%;border:1px solid #9ca3af;padding:10px 12px;vertical-align:top;">
+                        <div class="office-box-header"
+                            style="text-align:center;font-size:10.5px;font-weight:700;padding:4px;margin-bottom:10px;border:1px solid #9ca3af;">
+                            For Office Use</div>
+                        <div class="office-label">Accepted by :</div>
+                        <div class="office-field"></div>
+                        <div class="office-label" style="margin-top:6px;">Date :</div>
+                        <div class="office-field"></div>
+                        <div class="office-label" style="margin-top:6px;">Authorised officer :</div>
+                        <div class="office-field"></div>
+                        <div style="margin-top:14px;border-top:0.5px solid #d1d5db;padding-top:8px;">
+                            <div class="office-label">Tariff Code :</div>
+                            <div class="office-field"></div>
+                            <div class="office-label" style="margin-top:6px;">Certificate Code :</div>
+                            <div class="office-field"></div>
+                            <div class="office-label" style="margin-top:6px;">Policy No :</div>
+                            <div class="office-field"></div>
+                        </div>
+                    </td>
+          
+        </tr>
+      </table>
+    </div><!-- /Page 1 -->
+
+    <div class="page-break-label">Page 2</div>
+
+    <!-- ========== PAGE 2 ========== -->
+    <div class="form-page">
+      <div style="font-size:10px;color:#9ca3af;text-align:right;margin-bottom:8px;">MO/UW/NB/SE/02 — Page 2</div>
+
+      <!-- Questions 6–16 in a two-column table layout -->
+      <table class="q-table">
+        <tbody>
+          
+          <tr>
+            <td class="q-col">
+              <div class="q-text"><strong>6.</strong> Will the Car be driven by </div>
+              <div class="q-text">(a) Proposer </div>
+              <div class="q-text">(b) Paid driver</div>
+              <div class="q-text">(c) Anyone else</div>
+            </td>
+            <td class="a-col">
+              <div style="font-size:9px;color:#6b7280;">a)</div><input class="field-input" type="text"
+                style="width:100%;border-bottom:1px solid #9ca3af;margin-bottom:6px;">
+              <div style="font-size:9px;color:#6b7280;">b)</div><input class="field-input" type="text"
+                style="width:100%;border-bottom:1px solid #9ca3af;">
+                <div style="font-size:9px;color:#6b7280;">c)</div><input class="field-input" type="text"
+                style="width:100%;border-bottom:1px solid #9ca3af;">
+            </td>
+          </tr>
+          <tr>
+            <td class="q-col">
+              <div class="q-text"><strong>7.</strong>To the best of your knowledge and belief, do you or does any other person who to your knowledge will drive suffer from defective vision or hearing or from any physical infirmity? If so, give details.</div>
+            </td>
+            <td class="a-col">
+              <textarea class="field-input" rows="3"
+                style="width:100%;border:1px solid #d1d5db;padding:3px;"></textarea>
+            </td>
+          </tr>
+          <tr>
+            <td class="q-col">
+              <div class="q-text"><strong>8.</strong>(a) Have you or has any other person who to your knowledge will drive been convicted during the past five years of any offence in connection with any MotorCycle or other Moter vehicle?</div>
+               <div class="q-text">(b) If so, give particulars, of all such convictions.
+              </div>
+            </td>
+            <td class="a-col">
+              <div style="font-size:9px;color:#6b7280;">a)</div><input class="field-input" type="text"
+                style="width:100%;border-bottom:1px solid #9ca3af;margin-bottom:6px;">
+              <div style="font-size:9px;color:#6b7280;">b)</div><input class="field-input" type="text"
+                style="width:100%;border-bottom:1px solid #9ca3af;">
+             
+            </td>
+          </tr>
+          <tr>
+            
+            <td class="q-col">
+              <div class="q-text"><strong>9.</strong> Are you now or have you been insured in respect of any motor vehicle? if so, Please state</div>
+              <div class="q-text">(a)Name of all Companies of Underwriters</div>
+              <div class="q-text">(b) Class of cover provided i.e. Comprehensive Third Party ets.</div>
+              <div class="q-text">(c) If you had Insured this vehicle with this Company or any other Insurer earlier, please give number of policy or Certificate of Insurance, date of expiry, type of cover provided and name of insurer.</div>
+            </td>
+            <td class="a-col">
+               <div style="font-size:9px;color:#6b7280;">a)</div><input class="field-input" type="text"
+                style="width:100%;border-bottom:1px solid #9ca3af;margin-bottom:6px;">
+              <div style="font-size:9px;color:#6b7280;">b)</div><input class="field-input" type="text"
+                style="width:100%;border-bottom:1px solid #9ca3af;">
+                <div style="font-size:9px;color:#6b7280;">c)</div><input class="field-input" type="text"
+                style="width:100%;border-bottom:1px solid #9ca3af;">
+            </td>
+          </tr>
+          <tr>
+            <td class="q-col">
+              <div class="q-text"><strong>10.</strong> (a)Give records of all accidents and losses during the past 3 years in connection with any Motor Vihicle owned or drive by you or used by you or for you</div>
+              
+              </div>
+            </td>
+            <td class="a-col">
+              <div style="font-size:9px;color:#6b7280;"></div><input class="field-input" type="text"
+                style="width:100%;border-bottom:1px solid #9ca3af;">
+            </td>
+          </tr>
+          <tr>
+            <td class="q-col">
+              <div class="q-text"><strong>11.</strong> Has any Company or Underwriter ever in connection with any Motor Vehicle:</div>
+                <div class="q-text">(a) Declined your proposal?</div>
+                <div class="q-text">(b) Required you to carry the first portion of any loss??</div>
+                <div class="q-text">(c) Required an increased Premium?</div>
+                <div class="q-text">(d) Imposed special conditions?</div>
+                <div class="q-text">(e) Refused to renew your policy?</div>
+                <div class="q-text">(f) Cancelled your policy?</div>
+
+            </td>
+            <td class="a-col">
+              <div style="font-size:9px;color:#6b7280;">a)</div><input class="field-input" type="text"
+                style="width:100%;border-bottom:1px solid #9ca3af;margin-bottom:6px;">
+              <div style="font-size:9px;color:#6b7280;">b)</div><input class="field-input" type="text"
+                style="width:100%;border-bottom:1px solid #9ca3af;">
+                  <div style="font-size:9px;color:#6b7280;">c)</div><input class="field-input" type="text"
+                  style="width:100%;border-bottom:1px solid #9ca3af;">
+                <div style="font-size:9px;color:#6b7280;">d)</div><input class="field-input" type="text"
+                style="width:100%;border-bottom:1px solid #9ca3af;">
+                <div style="font-size:9px;color:#6b7280;">e)</div><input class="field-input" type="text"
+                style="width:100%;border-bottom:1px solid #9ca3af;">
+                <div style="font-size:9px;color:#6b7280;">f)</div><input class="field-input" type="text"
+                style="width:100%;border-bottom:1px solid #9ca3af;">
+            </td>
+          </tr>
+          <tr>
+            <td class="q-col">
+              <div class="q-text"><strong>12.</strong>What type of cover do you require?</div>
+               <div class="q-text">(i)(a) Comprehencive</div>
+                <div class="q-text">(a) Third Party Fire & Theft</div>
+                 <div class="q-text">(a) Third Party</div>
+                  <div class="q-text">(ii) Is the insurance required on an annual basis? If not, state Period required?</div>
+            </td>
+            <td class="a-col">
+              <div style="font-size:9px;color:#6b7280;">i)</div>
+              <label><input type="radio" name="cover" value="comprehensive"
+                  style="accent-color:var(--slic-blue);"> Comprehensive</label><br>
+              <label><input type="radio" name="cover" value="thirdpartyft"
+                  style="accent-color:var(--slic-blue);"> Third Party Fire & Theft</label><br>
+              <label><input type="radio" name="cover" value="thirdparty" style="accent-color:var(--slic-blue);"> Third Party</label><br>
+              <div style="font-size:9px;color:#6b7280;margin-top:6px;">ii)</div>
+              <div class="field-line"><span class="field-label-inline" style="font-size:10px;"></span><input
+                  class="field-input" type="text" placeholder=""></div>
+            </td>
+          </tr>
+          <tr>
+            <td class="q-col">
+              <div class="q-text"><strong>13.</strong></div>
+              <div class="q-text">(a) Will the car be used solely for private purpose?</div>
+              <div class="q-text">(b) If not, state exact purpose for which the car will be used?</div>
+              <div class="q-text">(c) Did any government or other authority impose any special condition with regard to the usage at your vehicle?</div>
+
+            </td>
+            <td class="a-col">
+              <div style="font-size:9px;color:#6b7280;">a)</div><input class="field-input" type="text"
+                style="width:100%;border-bottom:1px solid #9ca3af;margin-bottom:6px;">
+                <div style="font-size:9px;color:#6b7280;">b)</div><input class="field-input" type="text"
+                style="width:100%;border-bottom:1px solid #9ca3af;margin-bottom:6px;">
+                <div style="font-size:9px;color:#6b7280;">c)</div><input class="field-input" type="text"
+                style="width:100%;border-bottom:1px solid #9ca3af;margin-bottom:6px;">
+            </td>
+          </tr>
+          <tr>
+            <td class="q-col">
+              <div class="q-text"><strong>14.</strong></div>
+              <div class="q-text">(a) Do you require cover for loss of use of the vehicle in the event of an accident?</div>
+              <div class="q-text">(i)Name and address of the registered owner</div>
+              <div class="q-text">(ii) The nature of the interest you have to propose for Insurance in your name</div>
+              <br>
+              <div class="q-text">(b)</div>
+              <div class="q-text">(i)Is there a Hire Purchase or Lease Agreement ?</div>
+              <div class="q-text">(ii)Is there a Bank Loan ? If so, please state whether on a Hire Purchase Agreement or Mortgage?</div>
+              <div class="q-text">(ii)Is there a Government or Corporation Loan ?</div>
+              <br>
+              <div class="q-text">(c) If you require the policy to be assigned, please state name and address of Finance /Leasing Company, Bank, Government Dept, or Corporation</div>
+
+            </td>
+            <td class="a-col">
+              <div style="font-size:9px;color:#6b7280;">a)</div>(i)<input class="field-input" type="text"
+                style="width:100%;border-bottom:1px solid #9ca3af;">
+                ii)<input class="field-input" type="text"
+                style="width:100%;border-bottom:1px solid #9ca3af;">
+
+                <div style="font-size:9px;color:#6b7280;">b)</div>(i)<input class="field-input" type="text"
+                style="width:100%;border-bottom:1px solid #9ca3af;">
+                ii)<input class="field-input" type="text"
+                style="width:100%;border-bottom:1px solid #9ca3af;">
+                iii)<input class="field-input" type="text"
+                style="width:100%;border-bottom:1px solid #9ca3af;">
+                <div style="font-size:9px;color:#6b7280;">c)</div>
+                <input class="field-input" type="text"
+                style="width:100%;border-bottom:1px solid #9ca3af;">
+                
+
+            </td>
+          </tr>
+          <tr>
+            <td class="q-col">
+              <div class="q-text"><strong>15.</strong> Do you desire to bear any portion of claim? <br> &nbsp;(See page 4 - If so state amount)</div>
+            </td>
+            <td class="a-col">
+              <input class="field-input" type="text" placeholder=""
+                style="width:100%;border-bottom:1px solid #9ca3af; margin-top:8px;">
+            </td>
+          </tr>
+          <tr>
+            <td class="q-col">
+              <div class="q-text"><strong>16.</strong> Are you member of the A.A.C. ? If so please state Membership  No &  Expiry date Membership</div>
+            </td>
+            <td class="a-col">
+              <div class="yn-group" style="margin-bottom:4px;">
+                Membership No : <input class="field-input" type="text" placeholder="Name and age"
+                style="width:100%;border-bottom:1px solid #9ca3af;">
+
+
+              </div>
+              Expiry Date : <input class="field-input" type="date" name="q16" style="border:none;border-bottom:1px solid #9ca3af;margin-top:4px;">
+               
+              </div>
+              
+            </td>
+            
+          </tr>
+        </tbody>
+      </table>
+    </div><!-- /Page 2 -->
+
+    <div class="page-break-label">Page 3</div>
+
+    <!-- ========== PAGE 3 ========== -->
+    <div class="form-page">
+      <div style="font-size:10px;color:#9ca3af;text-align:right;margin-bottom:8px;">MO/UW/NB/SE/02 — Page 3</div>
+
+      <!-- Questions 17–27 -->
+      <table class="q-table">
+        <tbody>
+          <tr>
+            <td class="q-col">
+              <div class="q-text"><strong>17.</strong> Do you require Personal Accident Benefits to Insured, Spouse,
+                Passengers, Including Driving Seat, Named Person, or Paid Driver? If so, please state age in the case of
+                individuals.</div>
+            </td>
+            <td class="a-col">
+              <div class="yn-group" style="margin-bottom:4px;">
+                <label><input type="radio" name="q16" value="yes"> Yes</label>
+                <label><input type="radio" name="q16" value="no"> No</label>
+              </div>
+              <textarea class="field-input" rows="3" style="width:100%;border:1px solid #d1d5db;padding:3px;"
+                placeholder="Details / ages..."></textarea>
+            </td>
+          </tr>
+          <tr>
+            <td class="q-col">
+              <div class="q-text"><strong>18.</strong> If you are entitled to a No Claim Bonus on a pervious Motor car?
+                If so, please state percentage and attach documentary evidence</div>
+            </td>
+            <td class="a-col">
+              <div class="yn-group" style="margin-bottom:4px;">
+                <label><input type="radio" name="q17" value="yes"> Yes</label>
+                <label><input type="radio" name="q17" value="no"> No</label>
+              </div>
+              <div class="field-line"><span class="field-label-inline" style="font-size:10px;">Percentage :</span><input
+                  class="field-input" type="text" placeholder="e.g. 20%"></div>
+            </td>
+          </tr>
+          <tr>
+            <td class="q-col">
+              <div class="q-text"><strong>19.</strong> Are you or any other person learning to drive in this Motor
+                vehicle insurance, please state name and age of such learner</div>
+            </td>
+            <td class="a-col">
+              <div class="yn-group" style="margin-bottom:4px;">
+                <label><input type="radio" name="q19" value="yes"> Yes</label>
+                <label><input type="radio" name="q19" value="no"> No</label>
+              </div>
+              <input class="field-input" type="text" placeholder="Name and age"
+                style="width:100%;border-bottom:1px solid #9ca3af;">
+            </td>
+          </tr>
+          <tr>
+            <td class="q-col">
+              <div class="q-text"><strong>20.</strong> Do you require cover against Strike, Riot &amp; Civil Commotion
+                risks ?</div>
+            </td>
+            <td class="a-col">
+              <div class="yn-group">
+                <label><input type="radio" name="q20" value="yes"> Yes</label>
+                <label><input type="radio" name="q20" value="no"> No</label>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="q-col">
+              <div class="q-text"><strong>21.</strong> Do you require cover against Flood and Natural Disaster Cover
+              </div>
+            </td>
+            <td class="a-col">
+              <div class="yn-group">
+                <label><input type="radio" name="q21" value="yes"> Yes</label>
+                <label><input type="radio" name="q21" value="no"> No</label>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="q-col">
+              <div class="q-text"><strong>22.</strong> Do you require Special Windscreen cover ? If so, state value of
+                windscreen.</div>
+            </td>
+            <td class="a-col">
+              <div class="yn-group" style="margin-bottom:4px;">
+                <label><input type="radio" name="q22" value="yes"> Yes</label>
+                <label><input type="radio" name="q22" value="no"> No</label>
+              </div>
+              <div class="field-line"><span class="field-label-inline" style="font-size:10px;">Value : Rs.</span><input
+                  class="field-input" type="text" placeholder=""> </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="q-col">
+              <div class="q-text"><strong>23.</strong> Do you require enhanced towing charges cover? If so, state the
+                amount.</div>
+            </td>
+            <td class="a-col">
+              <div class="yn-group" style="margin-bottom:4px;">
+                <label><input type="radio" name="q22" value="yes"> Yes</label>
+                <label><input type="radio" name="q22" value="no"> No</label>
+              </div>
+              <div class="field-line"><span class="field-label-inline" style="font-size:10px;">Amount : Rs.</span><input
+                  class="field-input" type="text" placeholder=""></div>
+            </td>
+          </tr>
+          <tr>
+            <td class="q-col">
+              <div class="q-text"><strong>24.a.</strong> Do you require Workmen's Compensation Insurance benefits to
+                Paid Driver ?</div>
+              <div class="q-text"><strong>&nbsp;&nbsp;&nbsp;&nbsp;b.</strong> Do you wish to cover above for RCC and /
+                or Terrorism ?</div>
+            </td>
+            <td class="a-col">
+              <div style="font-size:9px;color:#6b7280;">a)</div>
+              <div class="yn-group" style="margin-bottom:6px;">
+                <label><input type="radio" name="q24a" value="yes"> Yes</label>
+                <label><input type="radio" name="q24a" value="no"> No</label>
+              </div>
+              <input class="field-input" type="text" placeholder=""
+                style="width:100%;border-bottom:1px solid #9ca3af;margin-bottom:6px;">
+              <div style="font-size:9px;color:#6b7280;">b)</div>
+              <div class="yn-group">
+                <label><input type="radio" name="q24b" value="yes"> Yes</label>
+                <label><input type="radio" name="q24b" value="no"> No</label>
+              </div>
+              <input class="field-input" type="text" placeholder="" style="width:100%;border-bottom:1px solid #9ca3af;">
+            </td>
+          </tr>
+          <tr>
+            <td class="q-col">
+              <div class="q-text"><strong>25.</strong> Do you require Additional air bag Cover ? It so state the number
+                &amp; value of an air bag ?</div>
+            </td>
+            <td class="a-col">
+              <div class="yn-group" style="margin-bottom:4px;">
+                <label><input type="radio" name="q25" value="yes"> Yes</label>
+                <label><input type="radio" name="q25" value="no"> No</label>
+              </div>
+              <div class="field-line"><span class="field-label-inline" style="font-size:10px;">No. of bags:</span><input
+                  class="field-input" type="text" placeholder="" style="max-width:60px;"></div>
+              <div class="field-line"><span class="field-label-inline" style="font-size:10px;">Value : Rs.</span><input
+                  class="field-input" type="text" placeholder=""></div>
+            </td>
+          </tr>
+          <tr>
+            <td class="q-col">
+              <div class="q-text"><strong>26.</strong> Do you require Terrorism Cover ?</div>
+            </td>
+            <td class="a-col">
+              <div class="yn-group">
+                <label><input type="radio" name="q26" value="yes"> Yes</label>
+                <label><input type="radio" name="q26" value="no"> No</label>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="q-col">
+              <div class="q-text"><strong>27.</strong> Give details of all Policies of insurance you currently hold with
+                this Corporation</div>
+            </td>
+            <td class="a-col">
+              <textarea class="field-input" rows="3" style="width:100%;border:1px solid #d1d5db;padding:3px;"
+                placeholder="Policy details..."></textarea>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" style="padding:8px 10px;">
+              <div style="display:flex;align-items:center;gap:10px;font-size:11px;">
+                <span>Policy to commence on the</span>
+                <input class="field-input" type="text" placeholder=""
+                  style="max-width:50px;border-bottom:1px solid #9ca3af;">
+                <span>Date of</span>
+                <input class="field-input" type="text" placeholder=""
+                  style="max-width:100px;border-bottom:1px solid #9ca3af;">
+                <span>20</span>
+                <input class="field-input" type="text" placeholder=""
+                  style="max-width:40px;border-bottom:1px solid #9ca3af;">
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Declaration -->
+      <div style="border:1px solid #9ca3af;padding:12px 14px;margin:14px 0;">
+        <div class="consent-text">
+          I/We warrant that the above statements and particulars are true and I/We have not suppressed or mis-stated any
+          material fact. I/We undertake that the Motor vehicle to be insured will be maintained in good condition and
+          shall not be driven by any person who to my/our knowledge has been refused any Motor vehicle Insurance or
+          condition there of and I/We hereby agree that this Declaration shall be held to be promissory and shall form
+          the basis of the contract between me/us and the SRI LANKA INSURANCE CORPORATION LTD. and I am/we are willing
+          to accept policy subject to the terms, exceptions and conditions prescribed by the corperation therein and to
+          pay the premium thereon.
+        </div>
+      </div>
+
+      <!-- Signature -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:16px 0 10px;">
+        <div>
+          <div class="field-line">
+            <span class="field-label-inline">Date :</span>
+            <input class="field-input" type="date">
+          </div>
+        </div>
+        <div style="text-align:right;">
+          <div style="border-top:1px solid var(--ink);margin-top:24px;margin-bottom:3px;"></div>
+          <div style="font-size:10px;color:#6b7280;">Signature of Proposer</div>
+        </div>
+        
+      </div>
+     
+
+      <!-- Direct Business -->
+      <div style="text-align:center;margin-top:20px;padding-top:14px;border-top:1px solid #9ca3af;">
+        <div
+          style="font-size:14px;font-weight:700;text-decoration:underline;letter-spacing:0.06em;font-family:'EB Garamond',serif;">
+          DIRECT BUSINESS</div>
+      </div>
+    </div><!-- /Page 3 -->
+
+    <div class="page-break-label">Page 4 — Motor Car Insurance Benefits</div>
+
+    <!-- ========== PAGE 4 — Benefits ========== -->
+    <div class="form-page">
+      <div style="text-align:center;margin-bottom:14px;">
+        <div
+          style="font-size:14px;font-weight:700;letter-spacing:0.06em;font-family:'EB Garamond',serif;text-decoration:underline;">
+          MOTOR CAR INSURANCE BENEFITS</div>
+      </div>
+
+      <div style="border:1px solid #9ca3af;padding:14px 18px;font-size:10.5px;line-height:1.6;">
+
+        <div class="benefits-section">
+          <div class="benefits-title">COMPREHENSIVE</div>
+          <div><strong>Section 1.</strong> - Loss of or damage to the insured car by</div>
+          <div style="margin-left:20px;">(a)&nbsp; Accidental External means.</div>
+          <div style="margin-left:20px;">(b)&nbsp; Fire, Burglary, House-breaking or Theft.</div>
+          <div style="margin-left:20px;">(c)&nbsp; Malicious Act.</div>
+          <div><strong>Section 2.</strong> - Death of or bodily injury to any person except where such death or injury
+            arises out of and in the course of the employment of such person by the insured and excluding liability to
+            any person being a member of the insured's household who is a passenger in such Motor Car.</div>
+          <div><strong>Section 3.</strong> - Medical expenses incurred up to Rs. 1500/- in respect of injury sustained
+            by insured or occupants.</div>
+        </div>
+
+        <div class="benefits-section">
+          <div class="benefits-title">THIRD PARTY FIRE AND THEFT</div>
+          <div><strong>Section 1.</strong> - Loss or damage by Fire, Burglary, House-breaking or Theft.</div>
+          <div><strong>Section 2.</strong> - Death of or bodily injury to any person except where such death or injury
+            arises out of and in the course of the employment of such person by the insured and excluding liability to
+            any person being a member of the insured's household who is a passenger in such Motor Car.</div>
+        </div>
+
+        <div class="benefits-section">
+          <div class="benefits-title">THIRD PARTY</div>
+          <div>Death of or bodily injury to any person except where such death or injury arises out of and in the course
+            of the employment of such person by the insured and excluding liability to any person being a member of the
+            insured's household who is a passenger in such Motor Car.</div>
+        </div>
+
+        <div style="text-align:center;font-weight:700;font-size:11px;margin:10px 0 6px;letter-spacing:0.04em;">SPECIAL
+          REDUCTIONS ON COMPREHENSIVE POLICIES</div>
+
+        <div class="benefits-section">
+          <div class="benefits-title">NO CLAIMS BONUS</div>
+          <table style="width:100%;font-size:10px;border-collapse:collapse;">
+            <tr>
+              <td>The preceding year</td>
+              <td class="pct" style="font-weight:700;">15%</td>
+              <td>The preceding 7 Consecutive years</td>
+              <td class="pct" style="font-weight:700;">45%</td>
+            </tr>
+            <tr>
+              <td>The preceding 2 Consecutive years</td>
+              <td class="pct" style="font-weight:700;">20%</td>
+              <td>The preceding 8 Consecutive years</td>
+              <td class="pct" style="font-weight:700;">50%</td>
+            </tr>
+            <tr>
+              <td>The preceding 3 Consecutive years</td>
+              <td class="pct" style="font-weight:700;">25%</td>
+              <td>The preceding 9 Consecutive years</td>
+              <td class="pct" style="font-weight:700;">55%</td>
+            </tr>
+            <tr>
+              <td>The preceding 4 Consecutive years</td>
+              <td class="pct" style="font-weight:700;">30%</td>
+              <td>The preceding 10 Consecutive years</td>
+              <td class="pct" style="font-weight:700;">60%</td>
+            </tr>
+            <tr>
+              <td>The preceding 5 Consecutive years</td>
+              <td class="pct" style="font-weight:700;">35%</td>
+              <td>The preceding 11 Consecutive years</td>
+              <td class="pct" style="font-weight:700;">65%</td>
+            </tr>
+            <tr>
+              <td>The preceding 6 Consecutive years</td>
+              <td class="pct" style="font-weight:700;">40%</td>
+              <td>The preceding 12 Consecutive years</td>
+              <td class="pct" style="font-weight:700;">70%</td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="benefits-section">
+          <div class="benefits-title">VOLUNTARY CLAIMS EXCESS:</div>
+          <table style="width:60%;font-size:10px;">
+            <tr>
+              <td>Excess &nbsp;&nbsp; Rs. 2,000/-</td>
+              <td>10% of basic premium</td>
+            </tr>
+            <tr>
+              <td>Excess &nbsp;&nbsp; Rs. 5,000/-</td>
+              <td>15% of basic premium</td>
+            </tr>
+            <tr>
+              <td>Excess &nbsp;&nbsp; Rs.10,000/-</td>
+              <td>20% of basic premium</td>
+            </tr>
+          </table>
+          <div style="font-size:9.5px;font-style:italic;margin-top:3px;">(The amount of rebate does not exceed the
+            amount of excess)</div>
+          <div style="font-size:10px;margin-top:3px;"><strong>Membership of the Automobile Association of Sri Lanka -
+              Rs. 100/-</strong></div>
+        </div>
+
+        <div class="benefits-section">
+          <div class="benefits-title">COMULSORY EXCESS</div>
+          <div style="font-size:10px;font-style:italic;margin-bottom:4px;">(Applicable to own damage only under
+            Comprehensive, Third party, Fire &amp; Theft and/or theft Policies in respect of each and every claim.)
+          </div>
+          <table style="width:80%;font-size:10px;">
+            <tr>
+              <td>Vehicles over 10 years old</td>
+              <td>Excess Rs. 1,000/-</td>
+            </tr>
+            <tr>
+              <td>Vehicles over 15 years old</td>
+              <td>Excess Rs. 1,500/-</td>
+            </tr>
+            <tr>
+              <td>Vehicles over 20 years old</td>
+              <td>Excess Rs. 2,000/-</td>
+            </tr>
+          </table>
+        </div>
+
+        <div
+          style="text-align:center;font-weight:700;font-size:11px;margin:10px 0 6px;text-decoration:underline;letter-spacing:0.04em;">
+          ADDITIONAL BENEFITS</div>
+        <div class="benefits-section">
+          <div style="font-size:10.5px;line-height:1.7;">
+            (1) &nbsp; Special windscreen Cover.<br>
+            (2) &nbsp; Enhanced Towing charges beyond the limit of Rs. 1000/-<br>
+            (3) &nbsp; Flood and Natural Disaster Cover<br>
+            (4) &nbsp; Strike, Riot &amp; Civil Commotion Cover<br>
+            (5) &nbsp; Workermen's Compensation Insurance to paid Driver.<br>
+            (6) &nbsp; Personal Accident Benefits to Insured, Spouse, Passengers, Person diving other than the Insured
+            or Paid Driver, any named Person or Driver.<br>
+            (7) &nbsp; Learner Driver Cover-Granted only to persons not less than 18 years of age and subject or
+            Compulsory Excess of Rs.2,500/- on each and every claim.<br>
+            (8) &nbsp; Terrorism Cover.<br>
+            (9) &nbsp; Extended Air bag cover beyond the limit of 50% of the total value of air bag.
+          </div>
+        </div>
+
+        <div
+          style="text-align:center;font-weight:700;font-size:11px;margin:10px 0 6px;text-decoration:underline;letter-spacing:0.04em;">
+          EXTRA FITTINGS</div>
+        <div class="benefits-section">
+          <div style="font-size:10px;line-height:1.55;">Item such as Air-conditioners, radios, aerials, hood-racks,
+            fog-lamps. sunvisors. bonnet ornaments, reverse lamps, rimem-belisher, etc., are additional fittings and are
+            not normally covered unless specially declared and individually valued. If your car is fitted with any item
+            and you wish it/them covered under the insurance please furnish full particulars with separate values.</div>
+        </div>
+
+        <div
+          style="text-align:center;font-weight:700;font-size:11px;margin:10px 0 6px;text-decoration:underline;letter-spacing:0.04em;">
+          IMPORTANT</div>
+        <div style="font-size:10.5px;font-weight:600;text-align:center;">The validity of insurance will cease on change
+          of ownership of vehicle.</div>
+      </div>
+
+      <!-- Footer -->
+      <div style="text-align:center;margin-top:16px;padding-top:10px;border-top:1px solid #9ca3af;">
+        <div style="font-size:10px;color:#374151;">No. 21, Vauxhall Street, Colombo 02, Sri Lanka.</div>
+        <div style="font-size:10px;color:#6b7280;">Tel : 2357004-5 &nbsp; Fax: 2357309</div>
+        <div style="display:flex;justify-content:space-between;margin-top:8px;font-size:9px;color:#9ca3af;">
+          <span>Nippon Graphics (Pvt) Ltd - Po No:2021/4500010269- Forms 5000 - Ma No:100000212</span>
+          <span>Form No: 3726 - E/D</span>
+        </div>
+      </div>
+    </div><!-- /Page 4 -->
+
+  </div><!-- /form-wrapper -->
+
+  <script>
+    function clearForm() {
+      if (!confirm("Clear all form data? ")) return;
+      document
+        .querySelectorAll(
+          'input[type="text"], input[type="date"], input[type="number"], textarea',
+        )
+        .forEach((el) => (el.value = ""));
+      document
+        .querySelectorAll('input[type="radio"], input[type="checkbox"]')
+        .forEach((el) => (el.checked = false));
+    }
+  </script>
+
+</body>
+
+</html>

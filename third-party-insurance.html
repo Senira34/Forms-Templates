@@ -1,0 +1,1517 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SLIC - Proposal Form for Third Party Motor Insurance</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Source+Sans+3:wght@300;400;600;700&display=swap"
+    rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #1a1a1a;
+      --paper: #fdfcf8;
+      --rule: #888;
+      --accent: #1c3f6e;
+      --green: #188b8f;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Source Sans 3", sans-serif;
+      background: #e8e4dc;
+      color: var(--ink);
+      min-height: 100vh;
+      padding: 2rem 1rem;
+    }
+
+    .form-page {
+      background: var(--paper);
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2.5rem 3rem;
+      box-shadow:
+        0 4px 40px rgba(0, 0, 0, 0.18),
+        0 1px 4px rgba(0, 0, 0, 0.08);
+      border: 1px solid #ccc;
+      position: relative;
+    }
+
+    /* Subtle paper texture */
+    .form-page::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .form-page>* {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Header */
+    .header-box {
+      border: 1px solid var(--accent);
+      display: flex;
+      align-items: center;
+      margin-bottom: 0;
+    }
+
+    .logo {
+      color: white;
+      padding: 0.2rem 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100px;
+      height: 100px;
+    }
+
+    .logo-inner {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+
+    .title-cell {
+      flex: 1;
+      padding: 0.7rem 1rem;
+      text-align: center;
+    }
+
+    .office-cell {
+      border-left: 1px solid var(--ink);
+      padding: 0.2rem 0.4rem;
+      font-size: 0.62rem;
+      min-width: 130px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .office-cell .label {
+      font-weight: 700;
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .office-cell .field-line {
+      border-bottom: 1px solid var(--ink);
+      min-height: 14px;
+    }
+
+    /* Form ref */
+    .form-ref {
+      font-size: 0.65rem;
+      text-align: right;
+      margin-bottom: 4px;
+      font-style: italic;
+      color: #555;
+    }
+
+    /* Notice box */
+    .notice-box {
+      border: 1px solid var(--accent);
+      border-top: none;
+      padding: 0.5rem 0.8rem;
+      font-size: 0.62rem;
+      line-height: 1.5;
+      background: #f5f3ee;
+      margin-bottom: 0.8rem;
+    }
+
+    .notice-box strong {
+      color: #8b0000;
+    }
+
+    /* Section headers */
+    .section-num {
+      font-weight: 700;
+      font-size: 0.78rem;
+      color: var(--accent);
+      min-width: 18px;
+      display: inline-block;
+    }
+
+    .section-row {
+      display: flex;
+      align-items: baseline;
+      gap: 0.4rem;
+      margin-bottom: 0.35rem;
+      font-size: 0.78rem;
+    }
+
+    .section-block {
+      border-left: 3px solid var(--green);
+      padding: 0.5rem 0.7rem;
+      margin-bottom: 0.85rem;
+      background: rgba(28, 63, 110, 0.03);
+      border: 1px solid var(--accent);
+    }
+
+    .section-title {
+      font-weight: 700;
+      font-size: 0.78rem;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+
+    /* Input fields */
+    .field-group {
+      display: grid;
+      gap: 0.4rem;
+    }
+
+    .field-row {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .field-label {
+      font-size: 0.72rem;
+      color: #444;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    input[type="text"],
+    input[type="date"],
+    input[type="number"],
+    select,
+    textarea {
+      border: none;
+      border-bottom: 1.5px solid #888;
+      background: transparent;
+      font-family: "Source Sans 3", sans-serif;
+      font-size: 0.78rem;
+      padding: 1px 3px;
+      color: var(--ink);
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+
+    input[type="text"]:focus,
+    input[type="date"]:focus,
+    input[type="number"]:focus,
+    select:focus,
+    textarea:focus {
+      border-bottom-color: var(--accent);
+      background: rgba(28, 63, 110, 0.04);
+    }
+
+    .field-inline {
+      flex: 1;
+      min-width: 80px;
+    }
+
+    textarea {
+      resize: none;
+      border: 1.5px solid #aaa;
+      border-radius: 2px;
+      padding: 4px 6px;
+      margin-top: 4px;
+    }
+
+    textarea:focus {
+      border-color: var(--accent);
+      background: rgba(28, 63, 110, 0.04);
+    }
+
+    /* Two-col grid */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem 1.2rem;
+    }
+
+    .three-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 0.5rem 1rem;
+    }
+
+    /* Checkbox/radio */
+    .checkbox-group {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+      font-size: 0.72rem;
+    }
+
+    .checkbox-item {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+    }
+
+    input[type="checkbox"],
+    input[type="radio"] {
+      width: 13px;
+      height: 13px;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+
+    /* Answer boxes on right side */
+    .answer-col {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      min-width: 120px;
+    }
+
+    .answer-box {
+      border: 1px solid #aaa;
+      min-height: 20px;
+      padding: 2px 6px;
+      font-size: 0.72rem;
+    }
+
+    .answer-box input {
+      border: none;
+      background: transparent;
+      width: 100%;
+      font-size: 0.72rem;
+      padding: 0;
+    }
+
+    /* Side-by-side question+answer */
+    .qa-row {
+      display: flex;
+      gap: 0.8rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .qa-question {
+      flex: 1;
+      font-size: 0.72rem;
+      line-height: 1.5;
+    }
+
+    .qa-answer {
+      min-width: 130px;
+    }
+
+    /* Additional covers table-like */
+    .covers-row {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+      margin-bottom: 0.3rem;
+      font-size: 0.72rem;
+    }
+
+    .covers-label {
+      flex: 1;
+    }
+
+    .covers-field {
+      border: 1px solid #aaa;
+      min-width: 110px;
+      min-height: 18px;
+    }
+
+    .covers-field input {
+      border: none;
+      background: transparent;
+      width: 100%;
+      font-size: 0.72rem;
+      padding: 2px 4px;
+    }
+
+    /* Amount checkboxes */
+    .amount-row {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-size: 0.72rem;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+
+    .amount-item {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* Declaration */
+    .declaration-box {
+      border: 1px solid #bbb;
+      padding: 0.6rem 0.8rem;
+      font-size: 0.6rem;
+      line-height: 1.6;
+      background: #f8f7f3;
+      margin: 0.7rem 0;
+    }
+
+    /* Signature row */
+    .sig-row {
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-end;
+      margin-top: 0.5rem;
+    }
+
+    .sig-field {
+      flex: 1;
+      border-bottom: 1.5px solid #888;
+      min-height: 24px;
+      font-size: 0.72rem;
+    }
+
+    /* Divider */
+    .divider {
+      border: none;
+      border-top: 1.5px solid var(--ink);
+      margin: 0.8rem 0;
+    }
+
+    .divider-light {
+      border: none;
+      border-top: 1px dashed #aaa;
+      margin: 0.5rem 0;
+    }
+
+    /* Print button */
+    .print-bar {
+      max-width: 860px;
+      margin: 0 auto 1.2rem;
+      display: flex;
+      gap: 0.8rem;
+      justify-content: flex-end;
+    }
+
+    .btn {
+      font-family: "Source Sans 3", sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 0.45rem 1.2rem;
+      border: none;
+      cursor: pointer;
+      letter-spacing: 0.5px;
+      transition: all 0.2s;
+      border-radius: 2px;
+    }
+
+    .btn-primary {
+      background: var(--green);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #07868f;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--green);
+      border: 1.5px solid var(--green);
+    }
+
+    .btn-outline:hover {
+      background: var(--green);
+      color: white;
+    }
+
+    .btn-clear {
+      background: transparent;
+      color: #07868f;
+      border: 1.5px solid #ccc;
+    }
+
+    .btn-clear:hover {
+      background: #f0eee8;
+      color: #555;
+    }
+
+    /* Footer */
+    .form-footer {
+      font-size: 0.6rem;
+      text-align: center;
+      margin-top: 0.6rem;
+      color: #555;
+
+      padding-top: 0.4rem;
+    }
+
+    /* ===================== PRINT STYLES ===================== */
+    @media print {
+      @page {
+        size: A4;
+        margin: 8mm;
+      }
+
+      body {
+        background: white !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        zoom: 0.85;
+        /* Adjust zoom level to fit everything on a single page */
+      }
+
+      .print-bar {
+        display: none !important;
+      }
+
+      .form-page {
+        box-shadow: none !important;
+        border: none !important;
+        padding: 0 !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+      }
+
+      .form-page::before {
+        display: none !important;
+      }
+
+      /* Reduce some inner margins specifically for printing */
+      .section-block {
+        background: white !important;
+        border-left-color: black !important;
+        padding: 0.3rem 0.5rem !important;
+        margin-bottom: 0.4rem !important;
+      }
+
+      .notice-box {
+        margin-bottom: 0.4rem !important;
+        padding: 0.4rem 0.6rem !important;
+      }
+
+      /* All colors → black/white */
+      * {
+        color: black !important;
+        background: white !important;
+        border-color: black !important;
+      }
+
+      .notice-box {
+        background: #f0f0f0 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .declaration-box {
+        background: #f5f5f5 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      input[type="text"],
+      input[type="date"],
+      input[type="number"],
+      select,
+      textarea {
+        border-bottom: 1px solid black !important;
+        color: black !important;
+        background: transparent !important;
+      }
+
+      textarea {
+        border: 1px solid black !important;
+      }
+
+      .answer-box,
+      .covers-field {
+        border: 1px solid black !important;
+      }
+
+      input[type="checkbox"],
+      input[type="radio"] {
+        accent-color: black !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="print-bar">
+    <button class="btn btn-primary" id="btn-en" onclick="setLanguage('en')">English</button>
+    <button class="btn btn-outline" id="btn-si" onclick="setLanguage('si')">සිංහල</button>
+    <div style="flex: 1;"></div>
+    <button class="btn btn-clear" onclick="clearForm()">Clear Form</button>
+    <button class="btn btn-outline" onclick="window.print()">
+      🖨 Print Empty
+    </button>
+    <button class="btn btn-primary" onclick="window.print()">
+      🖨 Print Filled
+    </button>
+  </div>
+
+  <div class="form-page" id="form-en">
+    <!-- Form Ref -->
+    <div class="form-ref">MO/UW/NB/EA/01</div>
+
+    <!-- Header -->
+    <div class="header-box">
+      <div class="logo">
+        <img src="Logoas 2.svg" alt="SLIC Logo" class="logo-inner" />
+      </div>
+
+      <div class="title-cell">
+        <div style="
+              font-family: &quot;IM Fell English&quot;, serif;
+              font-size: 1.1rem;
+              font-weight: 700;
+              letter-spacing: 0.5px;
+              color: var(--accent);
+            ">
+          MOTOR DEPARTMENT
+        </div>
+        <div style="
+              font-family: &quot;IM Fell English&quot;, serif;
+              font-size: 1rem;
+              font-weight: 700;
+              margin-top: 2px;
+            ">
+          PROPOSAL FORM FOR THIRD PARTY MOTOR INSURANCE
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Notice -->
+    <div class="notice-box">
+      <strong>VERY IMPORTANT:</strong> Incorrect answers or failure to
+      disclose all material facts may render the insurance inoperative.
+      Material facts are those which would influence acceptance or assessment
+      of the insurance risk. If you are in doubt, please disclose them or seek
+      advice from your Agent or the Corporation. Pay Luxury/Semi Luxury tax or
+      produce paid receipt (if applicable). The driver should possess a valid
+      License &amp; Medical Certificate (if applicable) to drive.
+    </div>
+
+    <!-- Section 1 -->
+    <div class="section-block">
+      <div class="section-title">
+        <span class="section-num">1.</span> Particulars of Vehicle to be
+        Insured
+      </div>
+      <div class="two-col" style="margin-bottom: 0.4rem">
+        <div class="field-row">
+          <span class="field-label">Vehicle Number</span>
+          <div class="field-inline"><input type="text" placeholder="" /></div>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Make and Chassis No.</span>
+          <div class="field-inline"><input type="text" placeholder="" /></div>
+        </div>
+      </div>
+      <div class="two-col" style="margin-bottom: 0.4rem">
+        <div class="field-row">
+          <span class="field-label">Engine No.</span>
+          <div class="field-inline"><input type="text" placeholder="" /></div>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Date of First Registration</span>
+          <div class="field-inline"><input type="date" placeholder="" /></div>
+        </div>
+      </div>
+      <div class="two-col" style="margin-bottom: 0.4rem">
+        <div class="field-row">
+          <span class="field-label">Horse Power</span>
+          <div class="field-inline"><input type="text" placeholder="" /></div>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Make's max. carrying capacity (weight)</span>
+          <div class="field-inline"><input type="text" placeholder="" /></div>
+        </div>
+      </div>
+      <div class="two-col">
+        <div class="field-row">
+          <span class="field-label">Max seating capacity excluding driver</span>
+          <div class="field-inline">
+            <input type="number" placeholder="" min="1" />
+          </div>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Date of Purchase</span>
+          <div class="field-inline"><input type="date" placeholder="" /></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 2 -->
+    <div class="section-block">
+      <div class="section-title">
+        <span class="section-num">2.</span> Proposer's Details
+      </div>
+      <div class="field-row" style="margin-bottom: 0.4rem">
+        <span class="field-label" style="white-space: nowrap">Full Name with Surname (Mr./Mrs./Miss/Rev./…)</span>
+        <div class="field-inline"><input type="text" placeholder="" /></div>
+      </div>
+      <div class="field-row" style="margin-bottom: 0.4rem">
+        <span class="field-label">Address of Proposer</span>
+        <div class="field-inline"><input type="text" placeholder="" /></div>
+      </div>
+      <div class="two-col" style="margin-bottom: 0.4rem">
+        <div class="field-row">
+          <span class="field-label">District</span>
+          <div class="field-inline"><input type="text" placeholder="" /></div>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Gramasevaka Division</span>
+          <div class="field-inline"><input type="text" placeholder="" /></div>
+        </div>
+      </div>
+      <div class="two-col" style="margin-bottom: 0.4rem">
+        <div class="field-row">
+          <span class="field-label">National Identity Card No.</span>
+          <div class="field-inline"><input type="text" placeholder="" /></div>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Age/Date of Birth</span>
+          <div class="field-inline"><input type="text" placeholder="" /></div>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div class="field-row">
+          <span class="field-label">Business Registration No.</span>
+          <div class="field-inline"><input type="text" placeholder="" /></div>
+        </div>
+        <div class="field-row">
+          <span class="field-label">VAT Registration No. (if any)</span>
+          <div class="field-inline"><input type="text" placeholder="" /></div>
+        </div>
+      </div>
+      <div class="field-row" style="margin-bottom: 0.4rem">
+        <span class="field-label">Business or profession</span>
+        <div class="field-inline"><input type="text" placeholder="" /></div>
+
+        <div class="field-row">
+          <span class="field-label">Telephone No.</span>
+          <div class="field-inline"><input type="text" placeholder="" /></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 3 -->
+    <div class="section-block">
+      <div class="section-title">
+        <span class="section-num">3.</span> Vehicle Usage
+      </div>
+
+      <div class="qa-row" style="align-items: flex-start">
+        <div class="qa-question">
+          <div style="margin-bottom: 0.4rem">
+            (a) The vehicle registerd as ?<br />
+            (Motor Cycle, Motor Car, D/Purpose, Lorry/Bus, Three Wheeler,
+            Tractor)
+          </div>
+          <div style="margin-bottom: 0.4rem">
+            (b) State full particulars for which the vehicle will be used ?
+          </div>
+
+          <div style="margin-bottom: 0.4rem">
+            (c) Will passengers be carried for fee or reward ?
+          </div>
+
+          <div style="margin-bottom: 0.4rem">
+            (d) Will goods be carried for fee or reward ?
+          </div>
+          <div style="margin-bottom: 0.4rem">
+            (e) Luxury/Semi-Luxury Tax inclusive - Yes / No
+          </div>
+        </div>
+        <div class="answer-col">
+          <div class="answer-box">
+            <input type="text" placeholder="(a)" />
+          </div>
+          <div class="answer-box mt-1">
+            <input type="text" placeholder="(b)" />
+          </div>
+          <div class="answer-box mt-1">
+            <input type="text" placeholder="(c)" />
+          </div>
+          <div class="answer-box mt-1">
+            <input type="text" placeholder="(d)" />
+          </div>
+          <div class="answer-box mt-1">
+            <input type="text" placeholder="(e)" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 4 -->
+    <div class="section-block">
+      <div class="section-title">
+        <span class="section-num">4.</span> Vehicle Condition
+      </div>
+      <div class="field-row">
+        <span class="field-label" style="flex: 1">Is/Are vehicle/s in good state of repair and condition ?</span>
+        <div style="min-width: 150px">
+          <div class="checkbox-group">
+            <label class="checkbox-item"><input type="radio" name="condition" value="yes" /> Yes</label>
+            <label class="checkbox-item"><input type="radio" name="condition" value="no" /> No</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 5 -->
+    <div class="section-block">
+      <div class="section-title">
+        <span class="section-num">5. </span>Driver License & Competency
+      </div>
+      <div style="font-size: 0.72rem; margin-bottom: 0.4rem">
+        Are you having a valid certificate of competence to drive this / these
+        type of vehicles ?
+      </div>
+      <textarea rows="3" style="font-size: 0.8rem" placeholder=""></textarea>
+    </div>
+
+    <!-- Section 6 -->
+    <div class="section-block">
+      <div class="section-title">
+        <span class="section-num">6.</span> Accident Records (Past 3 Years)
+      </div>
+      <div style="font-size: 0.72rem; margin-bottom: 0.4rem">
+        Give record of all accidents, losses during the past three (3) years
+        in connection with every motor vehicle owned or driven by you or used
+        by you or for you.
+      </div>
+      <textarea rows="2" style="font-size: 0.8rem" placeholder=""></textarea>
+    </div>
+
+    <!-- Section 7 -->
+    <div class="section-block">
+      <div class="section-title">
+        <span class="section-num">7.</span> Insurance History
+      </div>
+      <div class="qa-row" style="align-items: flex-start">
+        <div class="qa-question">
+          <div style="margin-bottom: 0.4rem">
+            To the best of your knowledge and belief Do you or does any other
+            person who drives, suffer from defective vision or hearing or from
+            any physical infirmity? If so, give details.
+          </div>
+          <textarea rows="2" style="font-size: 0.8rem" placeholder=""></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 8 -->
+    <div class="section-block">
+      <div class="section-title">
+        <span class="section-num">8.</span>Has any insurer or underwriter ever
+      </div>
+
+      <div class="covers-row">
+        <span class="covers-label">(a) Declined your proposal ?</span>
+        <div class="covers-field">
+          <input type="text" placeholder="(a)" />
+        </div>
+      </div>
+      <div class="covers-row">
+        <span class="covers-label">(b) Required you to carry the first portion of any loss ?</span>
+        <div class="covers-field">
+          <input type="text" placeholder="(b)" />
+        </div>
+      </div>
+      <div class="covers-row">
+        <span class="covers-label">(c) Required an increased premium or imposed special conditions
+          ?</span>
+        <div class="covers-field">
+          <input type="text" placeholder="(c)" />
+        </div>
+      </div>
+      <div class="covers-row">
+        <span class="covers-label">(d) Refused to renew your policy ?</span>
+        <div class="covers-field">
+          <input type="text" placeholder="(d)" />
+        </div>
+      </div>
+      <div class="covers-row">
+        <span class="covers-label">(e) Cancelled your policy ?</span>
+        <div class="covers-field">
+          <input type="text" placeholder="(e)" />
+        </div>
+      </div>
+    </div>
+    <!-- Section 9 -->
+    <div class="section-block">
+      <div class="section-title">
+        <span class="section-num">9.</span>Registered Owner Information
+      </div>
+
+      <div class="covers-row">
+        <span class="covers-label">(a) Are you the owner of the vehicle/s and is it / are they
+          registered in your name ?</span>
+        <div class="covers-field">
+          <input type="text" placeholder="(a)" />
+        </div>
+      </div>
+      <div class="covers-row">
+        <span class="covers-label">(b)If not, please state name and address or registered owner
+        </span>
+        <div class="covers-field">
+          <input type="text" placeholder="(b)" />
+        </div>
+      </div>
+      <div class="covers-row">
+        <span class="covers-label">(c) The nature of Interest you have to propose insurance in your
+          name?</span>
+        <div class="covers-field">
+          <input type="text" placeholder="(c)" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 10 -->
+    <div class="section-block">
+      <div class="section-title">
+        <span class="section-num">10.</span> Additional Covers Required
+        (Please tick with the limit)
+      </div>
+
+      <div class="covers-row">
+        <span class="covers-label">(a) Workmen's Compensation Insurance to
+          Driver/Cleaner/Attendant/Conductor/Labourer</span>
+        <div class="covers-field">
+          <input type="text" placeholder="(a)" />
+        </div>
+      </div>
+      <div class="covers-row">
+        <span class="covers-label">(b) Enhanced Third-party Property damage on (Commercial Vehicles
+          and Motor Cycles only).</span>
+        <div class="covers-field">
+          <input type="text" placeholder="(b)" />
+        </div>
+      </div>
+      <div class="covers-row">
+        <span class="covers-label">(c) Legal Liability to passengers (on Commercial vehicles
+          only)</span>
+        <div class="covers-field">
+          <input type="text" placeholder="(c)" />
+        </div>
+      </div>
+      <div class="covers-row">
+        <span class="covers-label">(d) Unlimited Third-Party cover (Buses) (S.L.T.B.)/Coaches only
+        </span>
+        <div class="covers-field">
+          <input type="text" placeholder="(d)" />
+        </div>
+      </div>
+      <div class="covers-row">
+        <span class="covers-label">(e) Learner Coverage (State, Learner's name and age)</span>
+        <div class="covers-field">
+          <input type="text" placeholder="(e)" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Policy Commencement -->
+    <div class="section-block">
+      <div class="section-title">
+        <span class="section-num">11.</span> Policy Commencement
+      </div>
+
+      <div style="
+            font-size: 0.75rem;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+          ">
+        <div style="grid-row: auto">
+          <span>Give details of all policies of insurance you currently hold with
+            this company<br />
+          </span>
+          <span>Policy Commences on the</span>
+        </div>
+        <div style="
+              column-gap: 0.5rem;
+              display: flex;
+              align-items: baseline;
+              gap: 0.4rem;
+            ">
+          <div style="min-width: 80px; border-bottom: 1.5px solid #888">
+            <input type="text" placeholder="" />
+          </div>
+          <span>day</span>
+          <div style="min-width: 80px; border-bottom: 1.5px solid #888">
+            <input type="text" placeholder="" />
+          </div>
+          <span>of</span>
+          <div style="min-width: 80px; border-bottom: 1.5px solid #888">
+            <input type="text" placeholder="" />
+          </div>
+          <span>20</span>
+          <div style="min-width: 40px; border-bottom: 1.5px solid #888">
+            <input type="text" placeholder="" />
+          </div>
+        </div>
+      </div>
+
+      <hr class="divider" />
+
+      <!-- Personal Data Protection Clause -->
+      <div class="declaration-box">
+        <div style="font-weight: 700; font-size: 0.65rem; margin-bottom: 4px">
+          Personal Data Protection Clause
+          <em>(In Accordance with the personal data protection Act No. 9 of
+            2022):</em>
+        </div>
+        <p>
+          I/We warrant that the above statements and particulars are true and
+          I/We have not suppressed or misstated any material fact. I/We
+          undertake that the Motor vehicle to do insured will be maintained in
+          good condition and shall not be driven by any person who to my/our
+          knowledge has been refused any motor vehicle insurance or
+          continuance thereof and I/We hereby agree that this declaration
+          shall be held to be promissory and shall form the basis of the
+          contract between me/us and the Sri Lanka Insurance Corporation
+          General Ltd, and I am/we are willing to accept a policy subject to
+          the terms exceptions and conditions prescribed by the company there
+          in and to pay the premium there on.
+        </p>
+      </div>
+
+      <!-- Signature block -->
+
+      <!-- Agency Declaration -->
+      <div style="
+            text-align: center;
+            font-size: 0.72rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+          "></div>
+      <div class="two-col" style="margin-bottom: 0.4rem">
+        <div style="flex: 1">
+          <div style="border-bottom: 1.5px solid #888; min-height: 18px">
+            <input type="text" placeholder="" />
+          </div>
+          <div style="font-size: 0.62rem; margin-top: 2px; text-align: center">
+            Date
+          </div>
+        </div>
+        <div style="flex: 1">
+          <div style="border-bottom: 1.5px solid #888; min-height: 24px">
+            <input type="text" placeholder="" />
+          </div>
+          <div style="font-size: 0.62rem; margin-top: 2px; text-align: center">
+            Signature of the Proposer
+          </div>
+        </div>
+      </div>
+
+      <div class="form-footer">
+        Direct Business <br />
+        Sri Lanka Insurance Corporation (General) Ltd, No. 21, Vauxhall
+        Street, Colombo, Sri Lanka <br />
+        Tel: 0112 357 357 Fax: 0112 357 309
+      </div>
+    </div>
+  </div>
+
+  <!-- SINHALA FORM START -->
+  <div class="form-page" id="form-si" style="display: none;">
+    <!-- Form Ref -->
+    <div class="form-ref">MO/UW/NB/EA/01</div>
+
+    <!-- Header -->
+    <div class="header-box">
+      <div class="logo">
+        <img src="Logoas 2.svg" alt="SLIC Logo" class="logo-inner" />
+      </div>
+
+      <div class="title-cell">
+        <div style="
+              font-family: &quot;IM Fell English&quot;, serif;
+              font-size: 1.1rem;
+              font-weight: 700;
+              letter-spacing: 0.5px;
+              color: var(--accent);
+            ">
+          රථවාහන රක්ෂණයේ
+        </div>
+        <div style="
+              font-family: &quot;IM Fell English&quot;, serif;
+              font-size: 1rem;
+              font-weight: 700;
+              margin-top: 2px;
+            ">
+          බාහිර පක්ෂය සදහා යෝජනා පත්‍රය
+        </div>
+      </div>
+      <div class="office-cell">
+        <div class="label" style="font-weight: 800">කාර්‍යාලීය ප්‍රයෝජනය සඳහා</div>
+        <div>
+          <div class="field-label">පිළිගන්නා ලද්දේ</div>
+          <div class="field-line"><input type="text" placeholder="" /></div>
+        </div>
+        <div>
+          <div class="field-label">දිනය</div>
+          <div class="field-line"><input type="date" placeholder="" /></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Notice -->
+    <div class="notice-box">
+      <strong>ඉතා වැදගත්:</strong> වැරදි පිළිතුරු සැපයීම හෝ සියලුම වැදගත් කරුණු හෙළිදරවු කිරීමට අපොහොසත් වීම මත
+      රක්ෂණය ක්‍රියාවිරහිත කෙරේ. වැදගත් විස්තර යනුවෙන් අදහස් කරනුයේ අවදානම හරියාකාරව අගය කිරීමට සහ පිළිගැනීමට ඉවහල් වන
+      කරුණුය. ඒ පිළිබදව සහාය අවශ්‍ය නම් කරුණාකර නියෝජිතවරයාට හෝ සංස්ඨාවට හෙළිදරව් කර උපදෙස් ලබාගන්න.
+    </div>
+
+    <!-- Section 1 -->
+    <div class="section-block">
+      <div class="section-title">
+        <span class="section-num">1.</span> ආරක්‍ෂණය කළ යුතු වාහනය පිළිබඳ විස්තර
+      </div>
+      <div class="two-col" style="margin-bottom: 0.4rem">
+        <div class="field-row">
+          <span class="field-label">රථයේ ලියාපදිංචි අංකය (වාහන අංකය)</span>
+          <div class="field-inline"><input type="text" placeholder="" /></div>
+        </div>
+        <div class="field-row">
+          <span class="field-label">රථයේ වර්ගය හා චැසි අංකය.</span>
+          <div class="field-inline"><input type="text" placeholder="" /></div>
+        </div>
+      </div>
+      <div class="two-col" style="margin-bottom: 0.4rem">
+        <div class="field-row">
+          <span class="field-label">එන්ජිමේ අංකය.</span>
+          <div class="field-inline"><input type="text" placeholder="" /></div>
+        </div>
+        <div class="field-row">
+          <span class="field-label">මුල් ලියාපදිංචි දිනය</span>
+          <div class="field-inline"><input type="date" placeholder="" /></div>
+        </div>
+      </div>
+      <div class="two-col" style="margin-bottom: 0.4rem">
+        <div class="field-row">
+          <span class="field-label">අශ්ව බලය</span>
+          <div class="field-inline"><input type="text" placeholder="" /></div>
+        </div>
+        <div class="field-row">
+          <span class="field-label">ගෙන යාහැකි වැඩිම බර ප්‍රමාණය</span>
+          <div class="field-inline"><input type="text" placeholder="" /></div>
+        </div>
+      </div>
+      <div class="two-col">
+        <div class="field-row">
+          <span class="field-label">රියදුරු අසුන හැර මුළු ආසන පහසුව</span>
+          <div class="field-inline">
+            <input type="number" placeholder="" min="1" />
+          </div>
+        </div>
+        <div class="field-row">
+          <span class="field-label">මිළට ගත් දිනය</span>
+          <div class="field-inline"><input type="date" placeholder="" /></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 2 -->
+    <div class="section-block">
+      <div class="section-title">
+        <span class="section-num">2.</span> යෝජකයාගේ විස්තර
+      </div>
+      <div class="field-row" style="margin-bottom: 0.4rem">
+        <span class="field-label" style="white-space: nowrap">යෝජකයාගේ සම්පූර්ණ නම වාසගම සහිව (මයා/මිය/මෙනවිය)</span>
+        <div class="field-inline"><input type="text" placeholder="" /></div>
+      </div>
+      <div class="field-row" style="margin-bottom: 0.4rem">
+        <span class="field-label">යෝජකයාගේ ලිපිනය</span>
+        <div class="field-inline"><input type="text" placeholder="" /></div>
+      </div>
+      <div class="two-col" style="margin-bottom: 0.4rem">
+        <div class="field-row">
+          <span class="field-label">දිස්ත්‍රික්කය</span>
+          <div class="field-inline"><input type="text" placeholder="" /></div>
+        </div>
+        <div class="field-row">
+          <span class="field-label">ග්‍රාමසේවා වසම</span>
+          <div class="field-inline"><input type="text" placeholder="" /></div>
+        </div>
+      </div>
+      <div class="two-col" style="margin-bottom: 0.4rem">
+        <div class="field-row">
+          <span class="field-label">ජාතික හැඳුනුම්පත් අංකය</span>
+          <div class="field-inline"><input type="text" placeholder="" /></div>
+        </div>
+        <div class="field-row">
+          <span class="field-label">වයස / උපන් දිනය</span>
+          <div class="field-inline"><input type="text" placeholder="" /></div>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div class="field-row">
+          <span class="field-label">ව්‍යාපාරය හෝ වෘත්තිය</span>
+          <div class="field-inline"><input type="text" placeholder="" /></div>
+        </div>
+        <div class="field-row">
+          <span class="field-label">දුරකථන අංකය</span>
+          <div class="field-inline"><input type="text" placeholder="" /></div>
+        </div>
+      </div>
+      <div class="field-row" style="margin-bottom: 0.4rem">
+        <span class="field-label">ව්‍යාපාර ලියාපදිංචි කිරීමේ අංකය</span>
+        <div class="field-inline"><input type="text" placeholder="" /></div>
+
+        <div class="field-row">
+          <span class="field-label">වැට් ලියාපදිංචි අංකය (ඇත්නම්)</span>
+          <div class="field-inline"><input type="text" placeholder="" /></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 3 -->
+    <div class="section-block">
+      <div class="section-title">
+        <span class="section-num">3.</span> රථයේ භාවිතය
+      </div>
+
+      <div class="qa-row" style="align-items: flex-start">
+        <div class="qa-question">
+          <div style="margin-bottom: 0.4rem">
+            (අ) රථය ලියාපදිංදි කර ඇත්තේ කෙසේද ?<br />
+            (මෝටර් සයිකල්, මෝටර් කාර්, ද්විත්ව කා, ලොරි, බස්, ත්‍රී රෝද රථ, ට්‍රැක්ටර්)
+          </div>
+          <div style="margin-bottom: 0.4rem">
+            (ආ) රථය පාවිච්චි කරනුයේ කුමන වැඩ සඳහා ද යන්න විස්තරව සඳහන් කරන්න.
+          </div>
+
+          <div style="margin-bottom: 0.4rem">
+            (ඇ) ගාස්තු ගෙන හෝ උපකාරයක් වශයෙන් හෝ මඟීන් ගෙන යනු ලබන්නේද?
+          </div>
+
+          <div style="margin-bottom: 0.4rem">
+            (ඈ) ගාස්තු ගෙන හෝ උපකාරයක් වශයෙන් හෝ බඩු ගෙන යනු ලබන්නේද?
+          </div>
+          <div style="margin-bottom: 0.4rem">
+            (ඉ) සුඛෝපබෝගී / අර්ධ සුඛෝපබෝගී බදු අදාළද ? - ඔව්/නැත
+          </div>
+        </div>
+        <div class="answer-col">
+          <div class="answer-box">
+            <input type="text" placeholder="(අ)" />
+          </div>
+          <div class="answer-box mt-1">
+            <input type="text" placeholder="(ආ)" />
+          </div>
+          <div class="answer-box mt-1">
+            <input type="text" placeholder="(ඇ)" />
+          </div>
+          <div class="answer-box mt-1">
+            <input type="text" placeholder="(ඈ)" />
+          </div>
+          <div class="answer-box mt-1">
+            <input type="text" placeholder="(ඉ)" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 4 -->
+    <div class="section-block">
+      <div class="section-title">
+        <span class="section-num">4.</span> රථයේ ස්වභාවය
+      </div>
+      <div class="field-row">
+        <span class="field-label" style="flex: 1">රථය / රථ අළුත්වැඩියා කළා වූ හොඳ තත්වයේ පවතීද ?</span>
+        <div style="min-width: 150px">
+          <div class="checkbox-group">
+            <label class="checkbox-item"><input type="radio" name="condition" value="yes" /> ඔව්</label>
+            <label class="checkbox-item"><input type="radio" name="condition" value="no" /> නැත</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 5 -->
+    <div class="section-block">
+      <div class="section-title">
+        <span class="section-num">5. </span>රියදුරු බලපත්‍රලාභියකුද යන්න වග
+      </div>
+      <div style="font-size: 0.72rem; margin-bottom: 0.4rem">
+        මෙම රථය/රථ පැදවීමට නිපුනතා සහතිකයක් ඔබට තිබේද ?
+      </div>
+      <textarea rows="3" style="font-size: 0.8rem" placeholder=""></textarea>
+    </div>
+
+    <!-- Section 6 -->
+    <div class="section-block">
+      <div class="section-title">
+        <span class="section-num">6.</span> අවසාන වසර 3 තුළ සිදුවූ අනතුරු සම්බන්ද විස්තර
+      </div>
+      <div style="font-size: 0.72rem; margin-bottom: 0.4rem">
+        ඔබ විසින් අයිතිය දැරූ හෝ පදවනු ලැබූ හෝ පාවිච්චි කරන ලැබු කිසියම් මෝටර් රථයක් සම්බන්ධයෙන් ගත වූ වර්ෂ තුන (3)
+        ඇතුළත කිසියම් හෝ හදිසි අනතුරක් වී තිබේ නම් ඒවායෙහි විස්තර සඳහන් කරන්න.
+      </div>
+      <textarea rows="2" style="font-size: 0.8rem" placeholder=""></textarea>
+    </div>
+
+    <!-- Section 7 -->
+    <div class="section-block">
+      <div class="section-title">
+        <span class="section-num">7.</span> ශාරීරික දුර්වලතාවයකින් පෙළේද යන්න වග
+      </div>
+      <div class="qa-row" style="align-items: flex-start">
+        <div class="qa-question">
+          <div style="margin-bottom: 0.4rem">
+            ඔබ හෝ ඔබගේ දැනුම ඇතිව මෝටර් රථය පදවන වෙනයම් පුද්ගලයෙකු ඔබ හොඳින් දන්නා සහ විශ්වාස කරන ලද පරිදි පෙනීමේ හෝ
+            ඇසීමේ හෝ ශාරීරික දුර්වලතාවයකින් පෙළෙන්නේද?එසේ නම් විස්තර සඳහන් කරන්න.
+          </div>
+          <textarea rows="2" style="font-size: 0.8rem" placeholder=""></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 8 -->
+    <div class="section-block">
+      <div class="section-title">
+        <span class="section-num">8.</span>කිසියම් රක්ෂකයෙක් හෝ ආරක්‍ෂණයක් ලියාපදිංචි කරන්නෙක් විසින් කවදා හෝ
+      </div>
+
+      <div class="covers-row">
+        <span class="covers-label">(අ) ඔබගේ යෝජනාව ප්‍රතික්‍ෂේප කළේද ?</span>
+        <div class="covers-field">
+          <input type="text" placeholder="(අ)" />
+        </div>
+      </div>
+      <div class="covers-row">
+        <span class="covers-label">(ආ) කිසියම් අලාභයක මුල් කොටස ඔබ විසින් දැරීමට අවශ්‍ය වීද?</span>
+        <div class="covers-field">
+          <input type="text" placeholder="(ආ)" />
+        </div>
+      </div>
+      <div class="covers-row">
+        <span class="covers-label">(ඇ) වැඩි වාරිකයක් ඉල්ලන ලද්දේ? / විශේෂ කොන්දේසි පනවන ලද්දේද?
+        </span>
+        <div class="covers-field">
+          <input type="text" placeholder="(ඇ)" />
+        </div>
+      </div>
+      <div class="covers-row">
+        <span class="covers-label">(ඈ) ඔබගේ ඔප්පුව අළුත් කිරීම ප්‍රතික්‍ෂේප කළේද ?</span>
+        <div class="covers-field">
+          <input type="text" placeholder="(ඈ)" />
+        </div>
+      </div>
+      <div class="covers-row">
+        <span class="covers-label">(ඉ) ඔබගේ ඔප්පුව අවලංගු කළේද ?</span>
+        <div class="covers-field">
+          <input type="text" placeholder="(ඉ)" />
+        </div>
+      </div>
+    </div>
+    <!-- Section 9 -->
+    <div class="section-block">
+      <div class="section-title">
+        <span class="section-num">9.</span>වර්තමාන ලියාපදිංචි අයිතිකරු සම්බන්ද විස්තර
+      </div>
+
+      <div class="covers-row">
+        <span class="covers-label">(අ) Aරථයේ /රථවල අයිතිකරු ඔබමද? එකී රථය/රථ ඔබගේ නමින් ලියාපදිංචි කර තිබේද?</span>
+        <div class="covers-field">
+          <input type="text" placeholder="(අ)" />
+        </div>
+      </div>
+      <div class="covers-row">
+        <span class="covers-label">(ආ)එසේ නොමැති නම්, ලියාපදිංචිකරුගේ නම සහ ලිපිනය සඳහන් කරන්න.
+        </span>
+        <div class="covers-field">
+          <input type="text" placeholder="(ආ)" />
+        </div>
+      </div>
+      <div class="covers-row">
+        <span class="covers-label">(ඇ) ඔබ නමින් රක්ෂණය කිරීමට ඔබට ඇති රක්‍ෂණීය අයිතියේ ස්වභාවය සඳහන් කරන්න.</span>
+        <div class="covers-field">
+          <input type="text" placeholder="(ඇ)" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 10 -->
+    <div class="section-block">
+      <div class="section-title">
+        <span class="section-num">10.</span>පහත සඳහන් ප්‍රතිලාභ ඔබට අවශ්‍යද?
+
+      </div>
+
+      <div class="covers-row">
+        <span class="covers-label">(අ) කම්කරු වන්දි රක්ෂණය - රියදුරු/ පිරිසිදු කරන්නා/සහායක/කොන්දොස්තර/කම්කරු</span>
+        <div class="covers-field">
+          <input type="text" placeholder="(අ)" />
+        </div>
+      </div>
+      <div class="covers-row">
+        <span class="covers-label">(ආ) මඟීන්ට නීත්‍යානුකූළ වගකීම් (වාණිජ වාහන වලට පමණයි).</span>
+        <div class="covers-field">
+          <input type="text" placeholder="(ආ)" />
+        </div>
+      </div>
+      <div class="covers-row">
+        <span class="covers-label">(ඇ)දීර්ඝ කරන ලද තුන්වෙන් පක්‍ෂ දේපල වගකීම (වාණිජ වාහන හා මෝටර් සයිකල් පමණයි)</span>
+        <div class="covers-field">
+          <input type="text" placeholder="(ඇ)" />
+        </div>
+      </div>
+      <div class="covers-row">
+        <span class="covers-label">(ඈ) අසීමිත තුන්වෙනි පාක්‍ෂික ආවාරණ (ලං.ග.ම.) බස් සහ මෝටර් කෝච් වලට පමණයි)
+        </span>
+        <div class="covers-field">
+          <input type="text" placeholder="(ඈ)" />
+        </div>
+      </div>
+      <div class="covers-row">
+        <span class="covers-label">(ඉ) රිය පුහුණු වීමේ ආවරණය (පුහුණුවන්නාගේ නම් සහ වයස් සඳහ් කරන්න)</span>
+        <div class="covers-field">
+          <input type="text" placeholder="(ඉ)" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Policy Commencement -->
+    <div class="section-block">
+      <div class="section-title">
+        <span class="section-num">11.</span> <span>මෙම සංස්ථාව සමඟ ඔබ දැනට පවත්වාගෙන යන සියළුම රක්‍ෂණ ඔප්පුවල විස්තර
+          සඳහන් කරන්න.<br />
+        </span>
+      </div>
+
+      <div style="
+            font-size: 0.75rem;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+          ">
+        <div style="grid-row: auto">
+
+          <span>ඔප්පුව ආරම්භ විය යුත්තේ </span>
+        </div>
+        <div style="
+              column-gap: 0.5rem;
+              display: flex;
+              align-items: baseline;
+              gap: 0.4rem;
+            ">
+          <div style="min-width: 80px; border-bottom: 1.5px solid #888">
+            <input type="text" placeholder="20" />
+          </div>
+          <span>වර්ෂයේ</span>
+          <div style="min-width: 80px; border-bottom: 1.5px solid #888">
+            <input type="text" placeholder="" />
+          </div>
+          <span>මස</span>
+          <div style="min-width: 80px; border-bottom: 1.5px solid #888">
+            <input type="text" placeholder="" />
+          </div>
+          <span>දින දීය.</span>
+
+        </div>
+      </div>
+
+      <hr class="divider" />
+
+      <!-- Personal Data Protection Clause -->
+      <div class="declaration-box">
+
+        <p>
+          ඉහත සඳහන් ප්‍රකාශ සහ විස්තර සත්‍ය බවට මම/අපි සහතික වෙමි/ වෙමු. කිසියම් වැදගත් කරුණු පිළිබද යටපත් කිරීමක් හෝ
+          වැරදි ප්‍රකාශයක් කර නොමැති බවටද මම / අපි සහතික වෙමි/ වෙමු. යෝජිත මෝටර් රථය ක්‍රියාකාරී හොඳ තත්වයෙන් පවත්වාගෙන
+          යාමට කිසියම් මෝටර් රථ ආරක්‍ෂණයක් මඟින් හෝ දීර්ඝ කළ යුතුව ඇති ආරක්‍ෂණයක් මඟින් හෝ ප්‍රතික්‍ෂේප කරනු ලැබූ
+          කිසියම් පුද්ගලයකු විසින් මාගේ/අපේ දැනීමේ හැටියට යෝජිත රථය හෝ රථ නොපදවන බවටද මම / අපි සහතික වෙමි/ වෙමු. එසේම මේ
+          ප්‍රකාශය පොරොන්දුවක් හැටියට පැවිත්වීමටත් එසේ ම මා/ අප සහ සීමාසහිත ශ්‍රී ලංකා ඉන්ෂුවරන්ස් කෝපරේෂන් ලිමිටඩ් අතර
+          ගිවිසුමේ මූලික පදනම වන බවටත් මම/ අපි මෙයින් එකඟ වෙමි/ වෙමු. සමාගම විසින් ඇතුළත් කොට ඇති වගන්ති ව්‍යාතරේක සහ
+          කොන්දේසීන්ටද යටත්ව ආරක්‍ෂණ ඔප්පුවක පිළිගැනීමට ද ඒ වෙනුවෙන් වාරික මුදල ගෙවීමටද මම/ අපි කැමති වෙමි/ වෙමු.
+        </p>
+      </div>
+
+      <!-- Signature block -->
+
+      <!-- Agency Declaration -->
+      <div style="
+            text-align: center;
+            font-size: 0.72rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+          "></div>
+      <div class="two-col" style="margin-bottom: 0.4rem">
+        <div style="flex: 1">
+          <div style="border-bottom: 1.5px solid #888; min-height: 18px">
+            <input type="text" placeholder="" />
+          </div>
+          <div style="font-size: 0.62rem; margin-top: 2px; text-align: center">
+            දිනය
+          </div>
+        </div>
+        <div style="flex: 1">
+          <div style="border-bottom: 1.5px solid #888; min-height: 24px">
+            <input type="text" placeholder="" />
+          </div>
+          <div style="font-size: 0.62rem; margin-top: 2px; text-align: center">
+            යෝජකයාගේ අත්සන
+          </div>
+        </div>
+      </div>
+
+      <div class="form-footer">
+        සෘජු ව්‍යාපාරයකි <br />
+        Sri Lanka Insurance Corporation (General) Ltd, No. 21, Vauxhall
+        Street, Colombo, Sri Lanka <br />
+        Tel: 0112 357 357 Fax: 0112 357 309
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+    function setLanguage(lang) {
+      if (lang === 'en') {
+        document.getElementById('form-en').style.display = 'block';
+        document.getElementById('form-si').style.display = 'none';
+        document.getElementById('btn-en').className = 'btn btn-primary';
+        document.getElementById('btn-si').className = 'btn btn-outline';
+      } else {
+        document.getElementById('form-en').style.display = 'none';
+        document.getElementById('form-si').style.display = 'block';
+        document.getElementById('btn-en').className = 'btn btn-outline';
+        document.getElementById('btn-si').className = 'btn btn-primary';
+      }
+    }
+
+    function clearForm() {
+      if (!confirm("Clear all form data? / සියලුම දත්ත මකා දමන්නද?")) return;
+      document
+        .querySelectorAll(
+          'input[type="text"], input[type="date"], input[type="number"], textarea',
+        )
+        .forEach((el) => (el.value = ""));
+      document
+        .querySelectorAll('input[type="radio"], input[type="checkbox"]')
+        .forEach((el) => (el.checked = false));
+    }
+  </script>
+</body>
+
+</html>
