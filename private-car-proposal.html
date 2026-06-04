@@ -16,6 +16,7 @@
       --ink: #111827;
       --bg: #f5f3ef;
       --paper: #fafaf8;
+      --green: #188b8f;
     }
 
     * {
@@ -34,62 +35,59 @@
       margin: 0 auto;
     }
 
-    /* Toolbar */
-    .toolbar {
+    /* Print Bar */
+
+    .print-bar {
+      max-width: 860px;
+      margin: 0 auto 1.2rem;
       display: flex;
+      gap: 0.8rem;
       justify-content: flex-end;
-      align-items: right;
-      margin-bottom: 20px;
-      padding: 12px 20px;
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 1px 8px rgba(0, 0, 0, 0.08);
     }
 
-    .toolbar-title {
-      font-family: 'EB Garamond', serif;
-      font-size: 15px;
-      color: var(--slic-blue);
-      font-weight: 600;
-    }
-
-
-    /* button styled */
     .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 9px 20px;
-      border-radius: 6px;
       font-family: 'Source Sans 3', sans-serif;
-      font-size: 13px;
+      font-size: 0.78rem;
       font-weight: 600;
-      letter-spacing: 0.04em;
-      cursor: pointer;
+      padding: 0.45rem 1.2rem;
       border: none;
-      transition: all 0.18s ease;
+      cursor: pointer;
+      letter-spacing: 0.5px;
+      transition: all 0.2s;
+      border-radius: 2px;
     }
 
     .btn-primary {
-      background: var(--slic-blue);
+      background: var(--green);
       color: white;
     }
 
     .btn-primary:hover {
-      background: #002070;
-      transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(0, 48, 135, 0.3);
+      background: #07868f;
     }
 
-    .btn-secondary {
-      background: white;
-      color: var(--slic-blue);
-      border: 1.5px solid var(--slic-blue);
+    .btn-outline {
+      background: transparent;
+      color: var(--green);
+      border: 1.5px solid var(--green);
     }
 
-    .btn-secondary:hover {
-      background: #f0f4ff;
+    .btn-outline:hover {
+      background: var(--green);
+      color: white;
     }
+
+    .btn-clear {
+      background: transparent;
+      color: #07868f;
+      border: 1.5px solid #ccc;
+    }
+
+    .btn-clear:hover {
+      background: #f0eee8;
+      color: #555;
+    }
+
 
     /* Page */
     .form-page {
@@ -614,28 +612,12 @@
   <div class="form-wrapper">
 
     <!-- Toolbar -->
-    <div class="toolbar">
-      <div style="display:flex;gap:10px; align-items:right; ">
-       <button class="btn btn-secondary" onclick="clearForm()">Clear Form</button>
-        <button class="btn btn-secondary" onclick="window.print()">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-            <polyline points="6 9 6 2 18 2 18 9" />
-            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" />
-            <rect x="6" y="14" width="12" height="8" />
-          </svg>
-          Print Empty Form
-        </button>
-        <button class="btn btn-primary" onclick="window.print()">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-            <polyline points="6 9 6 2 18 2 18 9" />
-            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" />
-            <rect x="6" y="14" width="12" height="8" />
-          </svg>
-          Print Filled Form
-        </button>
-        
-      </div>
-    </div>
+    <div class="print-bar">
+    <button class="btn btn-clear" onclick="clearForm()">Clear Form</button>
+    <button class="btn btn-outline" onclick="window.print()">🖨 Print Empty</button>
+    <button class="btn btn-primary" onclick="window.print()">🖨 Print Filled</button>
+  </div>
+
 
     <!-- ========== PAGE 1 ========== -->
     <div class="form-page">
