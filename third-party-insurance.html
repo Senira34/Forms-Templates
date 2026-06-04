@@ -451,6 +451,67 @@
       padding-top: 0.4rem;
     }
 
+    /* ===================== RESPONSIVE STYLES ===================== */
+    @media (max-width: 768px) {
+      body {
+        padding: 0.5rem;
+      }
+      .form-page {
+        padding: 1.5rem 1rem;
+      }
+      .header-box {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .logo {
+        width: 100%;
+        height: auto;
+        padding: 1rem;
+      }
+      .logo-inner {
+        max-height: 80px;
+      }
+      .office-cell {
+        border-left: none;
+        border-top: 1px solid var(--ink);
+        padding: 0.5rem 1rem;
+      }
+      .two-col, .three-col, .four-col {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+      }
+      .qa-row {
+        flex-direction: column;
+      }
+      .answer-col {
+        min-width: 100%;
+        margin-top: 0.5rem;
+      }
+      .sig-row {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: stretch;
+      }
+      .sig-field {
+        width: 100%;
+      }
+      .covers-row {
+        flex-direction: column;
+        gap: 0.2rem;
+      }
+      .covers-field {
+        min-width: 100%;
+        margin-bottom: 0.5rem;
+      }
+      .print-bar {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      .print-bar .btn {
+        width: 100%;
+      }
+    }
+
     /* ===================== PRINT STYLES ===================== */
     @media print {
       @page {
