@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SLIC - Proposal for a Trade Plate Policy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1a1a1a;
+            --paper: #fdfcf8;
+            --rule: #888;
+            --accent: #1c3f6e;
+            --green: #188b8f;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Source Sans 3', sans-serif;
+            background: #e8e4dc;
+            color: var(--ink);
+            min-height: 100vh;
+            padding: 2rem 1rem;
+        }
+
+        .print-bar {
+            background: #1e293b;
+            padding: 1rem;
+            border-radius: 8px;
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+            max-width: 860px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+        }
+
+        .btn-primary { background: #0ea5e9; color: white; }
+        .btn-primary:hover { background: #0284c7; }
+        .btn-outline { background: white; color: #1e293b; border: 1px solid #cbd5e1; }
+        .btn-outline:hover { background: #f1f5f9; }
+        .btn-clear { background: #ef4444; color: white; }
+        .btn-clear:hover { background: #dc2626; }
+
+        .form-page {
+            background: var(--paper);
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 2.5rem 3rem;
+            box-shadow: 0 4px 40px rgba(0, 0, 0, 0.18), 0 1px 4px rgba(0, 0, 0, 0.08);
+            border: 1px solid #ccc;
+            position: relative;
+        }
+
+        .header-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .logo {
+            width: 120px;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        .section-num {
+            font-weight: 700;
+            font-size: 0.78rem;
+            color: var(--accent);
+            min-width: 18px;
+            display: inline-block;
+        }
+
+        .section-row {
+            display: flex;
+            align-items: baseline;
+            gap: 0.4rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.78rem;
+        }
+
+        .field-row {
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 0.5rem;
+        }
+
+        .field-label {
+            font-size: 0.72rem;
+            color: #444;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        input[type="text"], input[type="date"], input[type="number"], select, textarea {
+            border: none;
+            border-bottom: 1.5px dotted var(--rule);
+            background: transparent;
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 0.78rem;
+            padding: 1px 3px;
+            color: var(--ink);
+            outline: none;
+            width: 100%;
+        }
+
+        input[type="text"]:focus, input[type="date"]:focus {
+            border-bottom-color: var(--accent);
+            background: rgba(28, 63, 110, 0.04);
+        }
+
+        .field-inline { flex: 1; min-width: 80px; }
+
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem 1.2rem;
+        }
+
+        .checkbox-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
+            font-size: 0.72rem;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+        }
+
+        input[type="checkbox"], input[type="radio"] {
+            width: 13px;
+            height: 13px;
+            accent-color: var(--accent);
+            cursor: pointer;
+        }
+
+        .qa-row {
+            display: flex;
+            gap: 0.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .qa-question {
+            flex: 1;
+            font-size: 0.72rem;
+            line-height: 1.5;
+        }
+
+        .qa-answer {
+            min-width: 130px;
+        }
+
+        .declaration-box {
+            border: 1px solid var(--ink);
+            padding: 1rem;
+            font-size: 0.7rem;
+            line-height: 1.5;
+            margin-top: 1.5rem;
+            text-align: justify;
+        }
+
+        /* ════════════════════════════════════════════════════════
+           PRINT MEDIA QUERIES (A4 TWO-SIDED SCALING)
+           ════════════════════════════════════════════════════════ */
+        @media print {
+            @page {
+                size: A4 portrait;
+                margin: 8mm;
+            }
+
+            body {
+                background: none !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                width: 1080px !important;
+                zoom: 0.69;
+            }
+
+            .print-bar { display: none !important; }
+
+            .form-page {
+                box-shadow: none !important;
+                border: none !important;
+                padding: 0 !important;
+                margin: 0 auto !important;
+                max-width: 1080px !important;
+                width: 1080px !important;
+            }
+
+            .form-page::before { display: none !important; }
+
+            * {
+                color: black !important;
+                background: white !important;
+                border-color: black !important;
+            }
+
+            input[type="text"], input[type="date"], textarea {
+                border-bottom: 1px dotted black !important;
+                color: black !important;
+                background: transparent !important;
+            }
+
+            .page-break-before-section6 {
+                page-break-before: always !important;
+                break-before: page !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="print-bar">
+        <button class="btn btn-clear" onclick="clearForm()">Clear Form</button>
+        <button class="btn btn-outline" onclick="window.print()">🖨 Print Empty</button>
+        <button class="btn btn-primary" onclick="window.print()">🖨 Print Filled</button>
+    </div>
+
+    <div class="form-page" id="form">
+
+        <!-- Header -->
+        <div class="header-box">
+            <svg class="logo" viewBox="0 0 230 184" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="3" y="3" width="223" height="177" rx="17" fill="#14b8a6" fill-opacity="0.1" stroke="#14b8a6" stroke-width="2"/>
+                <path d="M115 50L165 130H65L115 50Z" fill="#14b8a6" opacity="0.9"/>
+            </svg>
+            <div style="font-size: 0.8rem; font-weight: 600;">SRI LANKA INSURANCE CORPORATION GENERAL LTD.</div>
+            <div style="font-size: 1.1rem; font-weight: 700; color: var(--accent); margin-top: 5px;">PROPOSAL FOR A TRADE PLATE POLICY</div>
+        </div>
+
+        <div class="section-row" style="margin-top: 1.5rem;">
+            <span class="section-num">1.</span>
+            <span class="field-label">Name of Proposer (in full)</span>
+            <div class="field-inline"><input type="text"></div>
+        </div>
+
+        <div class="section-row">
+            <span class="section-num">2.</span>
+            <span class="field-label">Address</span>
+            <div class="field-inline"><input type="text"></div>
+        </div>
+
+        <div class="field-row" style="padding-left: 1.2rem;">
+            <span class="field-label">Business or occupation</span>
+            <div class="field-inline"><input type="text"></div>
+        </div>
+
+        <div class="field-row" style="padding-left: 1.2rem;">
+            <span class="field-label">Period of Insurance Required:</span>
+            <span class="field-label" style="margin-left: 1rem;">From</span>
+            <div style="width: 150px;"><input type="date"></div>
+            <span class="field-label">To</span>
+            <div style="width: 150px;"><input type="date"></div>
+        </div>
+
+        <div style="margin-top: 1.5rem; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.78rem;">
+            Particulars of Vehicles / Trade Plates to be Insured
+        </div>
+        <table style="width: 100%; border-collapse: collapse; font-size: 0.72rem; margin-bottom: 1.5rem;">
+            <thead>
+                <tr>
+                    <th style="border: 1px solid var(--ink); padding: 5px; text-align: left;">Trade Plate Reg. No.</th>
+                    <th style="border: 1px solid var(--ink); padding: 5px; text-align: left;">Make and Type</th>
+                    <th style="border: 1px solid var(--ink); padding: 5px; text-align: left;">Cubic Capacity or Tonnage</th>
+                    <th style="border: 1px solid var(--ink); padding: 5px; text-align: left;">Estimated Value of Vehicle & Accessories Rs.</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="border: 1px solid var(--ink); padding: 2px;"><input type="text" style="border:none !important;"></td>
+                    <td style="border: 1px solid var(--ink); padding: 2px;"><input type="text" style="border:none !important;"></td>
+                    <td style="border: 1px solid var(--ink); padding: 2px;"><input type="text" style="border:none !important;"></td>
+                    <td style="border: 1px solid var(--ink); padding: 2px;"><input type="text" style="border:none !important;"></td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid var(--ink); padding: 2px;"><input type="text" style="border:none !important;"></td>
+                    <td style="border: 1px solid var(--ink); padding: 2px;"><input type="text" style="border:none !important;"></td>
+                    <td style="border: 1px solid var(--ink); padding: 2px;"><input type="text" style="border:none !important;"></td>
+                    <td style="border: 1px solid var(--ink); padding: 2px;"><input type="text" style="border:none !important;"></td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid var(--ink); padding: 2px;"><input type="text" style="border:none !important;"></td>
+                    <td style="border: 1px solid var(--ink); padding: 2px;"><input type="text" style="border:none !important;"></td>
+                    <td style="border: 1px solid var(--ink); padding: 2px;"><input type="text" style="border:none !important;"></td>
+                    <td style="border: 1px solid var(--ink); padding: 2px;"><input type="text" style="border:none !important;"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div style="font-size: 0.75rem; font-weight: 600; margin-bottom: 1rem;">
+            Following Covers are available:<br>
+            Third Party liability only.
+        </div>
+
+        <div class="section-row">
+            <span class="section-num">3.</span>
+            <span class="qa-question" style="font-weight: 600;">Indicate which covers you require in respect of the above Trade Plates.</span>
+        </div>
+        <div class="qa-row" style="padding-left: 1.2rem;">
+            <span class="qa-question">(a) Third Party liability only.</span>
+            <div class="qa-answer"><input type="text"></div>
+        </div>
+        <div class="qa-row" style="padding-left: 1.2rem;">
+            <span class="qa-question">(b) Comprehensive Cover, i.e., Accidental Damage, Third Party liability</span>
+            <div class="qa-answer"><input type="text"></div>
+        </div>
+        <div class="qa-row" style="padding-left: 1.2rem;">
+            <span class="qa-question">(c) Are Passengers to be carried</span>
+            <div class="qa-answer"><input type="text"></div>
+        </div>
+        <div class="qa-row" style="padding-left: 1.2rem;">
+            <span class="qa-question">(d) Are Vehicles to be used for the conveyance of goods other than sample loads?</span>
+            <div class="qa-answer"><input type="text"></div>
+        </div>
+
+        <div class="section-row" style="margin-top: 1rem;">
+            <span class="section-num">4.</span>
+            <span class="qa-question">State the purposes for which the Trade Plates will be used.</span>
+            <div class="field-inline"><input type="text"></div>
+        </div>
+
+        <div class="section-row" style="margin-top: 1rem;">
+            <span class="section-num">5.</span>
+            <span class="qa-question">Have you or has any person who to your knowledge will drive, been convicted of any motoring offence?</span>
+            <div class="qa-answer" style="width: 150px;"><input type="text"></div>
+        </div>
+        <div class="field-row" style="padding-left: 1.2rem;">
+            <span class="field-label">If so, please give particulars.</span>
+            <div class="field-inline"><input type="text"></div>
+        </div>
+
+        <!-- Page break for side 2 if printing -->
+        <div class="page-break-before-section6"></div>
+
+        <div class="section-row" style="margin-top: 1.5rem;">
+            <span class="section-num">6.</span>
+            <span class="qa-question" style="font-weight: 600;">Has any Company or Underwriter at any time:</span>
+        </div>
+        <div class="qa-row" style="padding-left: 1.2rem;">
+            <span class="qa-question">(a) declined your Proposal?</span>
+            <div class="qa-answer"><input type="text"></div>
+        </div>
+        <div class="qa-row" style="padding-left: 1.2rem;">
+            <span class="qa-question">(b) required an increased premium or imposed special conditions?</span>
+            <div class="qa-answer"><input type="text"></div>
+        </div>
+        <div class="qa-row" style="padding-left: 1.2rem;">
+            <span class="qa-question">(c) cancelled or refused to renew your Policy?</span>
+            <div class="qa-answer"><input type="text"></div>
+        </div>
+        <div class="qa-row" style="padding-left: 1.2rem;">
+            <span class="qa-question">(d) required you to carry the first portion of any loss?</span>
+            <div class="qa-answer"><input type="text"></div>
+        </div>
+
+        <div class="section-row" style="margin-top: 1rem;">
+            <span class="section-num">7.</span>
+            <span class="qa-question" style="font-weight: 600;">Give particulars of all Claims during the past 3 years in respect of Trade Plates.</span>
+        </div>
+        <div class="field-row" style="padding-left: 1.2rem; align-items: center; margin-bottom: 0.5rem;">
+            <span class="field-label">Total Number of Vehicles Owned/Used:</span>
+            <div style="width: 100px;"><input type="text"></div>
+            <span class="field-label" style="margin-left: 1rem;">Year:</span>
+            <div style="width: 80px;"><input type="text"></div>
+            <span class="field-label" style="margin-left: 1rem;">Total Cost of Settled Claims Rs.:</span>
+            <div class="field-inline"><input type="text"></div>
+        </div>
+        <div class="field-row" style="padding-left: 1.2rem; align-items: center;">
+            <span class="field-label">Outstanding Claims: No.</span>
+            <div style="width: 80px;"><input type="text"></div>
+            <span class="field-label" style="margin-left: 1rem;">Cost Rs.</span>
+            <div class="field-inline"><input type="text"></div>
+        </div>
+
+        <div class="declaration-box">
+            <div style="font-weight: 700; font-size: 0.8rem; text-align: center; margin-bottom: 1rem;">DECLARATION</div>
+            <p style="margin-bottom: 0.8rem;">I/We warrant that the above statements and particulars are true and I/we hereby agree that this Declaration shall be held to be promissory and shall be the basis of the Contract between me/us and SRI LANKA INSURANCE CORPORATION GENERAL LTD. and I/we undertake that the vehicle/s to be insured shall not be driven by any person who to my/our knowledge has been refused any motor vehicle insurance or continuance thereof. I/We agree to accept a Policy subject to the terms, exceptions and conditions prescribed by the Company therein. I/We further agree that if this proposal is accepted by the Company the Policy shall not be operative until the premium has been paid to and accepted by the Company.</p>
+            <p style="margin-bottom: 0.8rem;">I/We hereby further agree and declare that I/we am/are aware of the provisions of Section 106 of the Motor Traffic Act (Chapter 203) as amended by Motor Traffic (Amendment) Act No. 31 of 1979 and that the Insurance cover herein proposed to be obtained does not apply in respect of any person whatsoever who has been convicted by a Court of Law under the said Act, being under the influence of alcohol or drugs.</p>
+            <p>I/We unconditionally agree that the Company may alter or amend the premium computation or coverage subject to prior notice, if necessary, to reflect the actual risk or to correct any error in the quotation or the policy.</p>
+        </div>
+
+        <div class="two-col" style="margin-top: 2rem;">
+            <div class="field-row">
+                <span class="field-label">Date</span>
+                <div class="field-inline"><input type="date"></div>
+            </div>
+            <div class="field-row">
+                <span class="field-label">Signature of Proposer</span>
+                <div class="field-inline"><input type="text" style="border-bottom: 1.5px dotted #888 !important; padding-bottom: 15px;"></div>
+            </div>
+        </div>
+
+        <div class="field-row" style="margin-top: 1rem;">
+            <span class="field-label">Name and Address of Agent/Broker</span>
+            <div class="field-inline"><input type="text"></div>
+        </div>
+        <div class="field-row">
+            <span class="field-label">Agent's/Broker's Code</span>
+            <div class="field-inline"><input type="text"></div>
+        </div>
+
+        <div class="field-row" style="margin-top: 1.5rem;">
+            <span class="field-label">Are you a relative of any Employee or Director of Sri Lanka Insurance?</span>
+            <div class="checkbox-group" style="margin-left: 1rem;">
+                <label class="checkbox-item"><input type="radio" name="relative" value="yes"> Yes</label>
+                <label class="checkbox-item"><input type="radio" name="relative" value="no"> No</label>
+            </div>
+        </div>
+        <div class="field-row" style="padding-left: 1.2rem;">
+            <span class="field-label">If yes Name of Employee/Director</span>
+            <div class="field-inline"><input type="text"></div>
+            <span class="field-label" style="margin-left: 1rem;">EMP No</span>
+            <div style="width: 150px;"><input type="text"></div>
+        </div>
+
+    </div>
+
+    <script>
+        function clearForm() {
+            if (!confirm('Clear all form data?')) return;
+            document.querySelectorAll('input[type="text"], input[type="date"], input[type="number"], textarea').forEach(el => el.value = '');
+            document.querySelectorAll('input[type="radio"], input[type="checkbox"]').forEach(el => el.checked = false);
+        }
+    </script>
+
+</body>
+
+</html>
