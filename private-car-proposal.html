@@ -253,25 +253,6 @@
       vertical-align: top;
     }
 
-    .office-box-header {
-      text-align: center;
-      font-weight: 700;
-      font-size: 10px;
-      background: #f0f4ff;
-      letter-spacing: 0.04em;
-    }
-
-    .office-label {
-      font-size: 9.5px;
-      color: #6b7280;
-    }
-
-    .office-field {
-      border-bottom: 0.5px solid #bbb;
-      min-height: 16px;
-      margin-bottom: 4px;
-    }
-
     /* Field lines */
     .field-line {
       display: flex;
@@ -406,6 +387,28 @@
       height: 12px;
     }
 
+    .office-cell {
+      border-left: 1px solid var(--ink);
+      padding: 0.2rem 0.4rem;
+      font-size: 0.62rem;
+      min-width: 130px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .office-cell .label {
+      font-weight: 700;
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .office-cell .field-line {
+      border-bottom: 1px solid var(--ink);
+      min-height: 14px;
+    }
+
     /* Big questions table */
     .q-table {
       width: 100%;
@@ -506,6 +509,13 @@
       .logo-inner {
         max-height: 80px;
       }
+
+      .office-cell {
+        border-left: none;
+        border-top: 1px solid var(--ink);
+        padding: 0.5rem 1rem;
+      }
+
       
       /* Make layout tables block-level so they stack vertically */
       .main-table, .main-table > tbody, .main-table > tbody > tr, .main-table > tbody > tr > td,
@@ -605,11 +615,6 @@
       .slic-logo-text span {
         color: #555 !important;
       }
-
-      .office-box-header {
-        background: #eee !important;
-      }
-
       .form-wrapper {
         max-width: 100% !important;
       }
@@ -657,6 +662,17 @@
             style="font-family:'IM Fell English',serif; font-size:1.1rem; font-weight:700; letter-spacing:0.5px; color:var(--accent);">
             PRIVATE CAR PROPOSAL FORM</div>
         </div>
+        <div class="office-cell">
+        <div class="label" style="font-weight:800;">For Office Use</div>
+        <div>
+          <div class="field-label">Accepted by</div>
+          <div class="field-line"><input type="text" placeholder=""></div>
+        </div>
+        <div>
+          <div class="field-label">Date</div>
+          <div class="field-line"><input type="date" placeholder=""></div>
+        </div>
+      </div>
          
       </div>
       
@@ -926,27 +942,6 @@
             </div>
 
           </td>
-          <!-- Office Use column -->
-                    <td style="width:30%;border:1px solid #9ca3af;padding:10px 12px;vertical-align:top;">
-                        <div class="office-box-header"
-                            style="text-align:center;font-size:10.5px;font-weight:700;padding:4px;margin-bottom:10px;border:1px solid #9ca3af;">
-                            For Office Use</div>
-                        <div class="office-label">Accepted by :</div>
-                        <div class="office-field"></div>
-                        <div class="office-label" style="margin-top:6px;">Date :</div>
-                        <div class="office-field"></div>
-                        <div class="office-label" style="margin-top:6px;">Authorised officer :</div>
-                        <div class="office-field"></div>
-                        <div style="margin-top:14px;border-top:0.5px solid #d1d5db;padding-top:8px;">
-                            <div class="office-label">Tariff Code :</div>
-                            <div class="office-field"></div>
-                            <div class="office-label" style="margin-top:6px;">Certificate Code :</div>
-                            <div class="office-field"></div>
-                            <div class="office-label" style="margin-top:6px;">Policy No :</div>
-                            <div class="office-field"></div>
-                        </div>
-                    </td>
-          
         </tr>
       </table>
     </div><!-- /Page 1 -->
