@@ -40,7 +40,6 @@
       position: relative;
     }
 
-    /* Subtle paper texture */
     .form-page::before {
       content: '';
       position: absolute;
@@ -55,7 +54,6 @@
       z-index: 1;
     }
 
-    /* Header */
     .header-box {
       border: 1px solid var(--accent);
       display: flex;
@@ -108,7 +106,6 @@
       min-height: 14px;
     }
 
-    /* Form ref */
     .form-ref {
       font-size: 0.65rem;
       text-align: right;
@@ -117,7 +114,6 @@
       color: #555;
     }
 
-    /* Notice box */
     .notice-box {
       border: 1px solid var(--accent);
       border-top: none;
@@ -132,7 +128,6 @@
       color: #8b0000;
     }
 
-    /* Section headers */
     .section-num {
       font-weight: 700;
       font-size: 0.78rem;
@@ -154,7 +149,7 @@
       padding: 0.5rem 0.7rem;
       margin-bottom: 0.85rem;
       background: rgba(28, 63, 110, 0.03);
-      border: 1px solid var(--accent)
+      border: 1px solid var(--accent);
     }
 
     .section-title {
@@ -166,7 +161,6 @@
       letter-spacing: 0.3px;
     }
 
-    /* Input fields */
     .field-group {
       display: grid;
       gap: 0.4rem;
@@ -230,7 +224,6 @@
       background: rgba(28, 63, 110, 0.04);
     }
 
-    /* Two-col grid */
     .two-col {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -243,7 +236,6 @@
       gap: 0.5rem 1rem;
     }
 
-    /* Checkbox/radio */
     .checkbox-group {
       display: flex;
       gap: 1rem;
@@ -267,7 +259,6 @@
       cursor: pointer;
     }
 
-    /* Answer boxes on right side */
     .answer-col {
       display: flex;
       flex-direction: column;
@@ -290,7 +281,6 @@
       padding: 0;
     }
 
-    /* Side-by-side question+answer */
     .qa-row {
       display: flex;
       gap: 0.8rem;
@@ -307,7 +297,6 @@
       min-width: 130px;
     }
 
-    /* Additional covers table-like */
     .covers-row {
       display: flex;
       align-items: baseline;
@@ -334,7 +323,6 @@
       padding: 2px 4px;
     }
 
-    /* Amount checkboxes */
     .amount-row {
       display: flex;
       align-items: center;
@@ -350,7 +338,6 @@
       gap: 4px;
     }
 
-    /* Declaration */
     .declaration-box {
       border: 1px solid #bbb;
       padding: 0.6rem 0.8rem;
@@ -360,7 +347,6 @@
       margin: 0.7rem 0;
     }
 
-    /* Signature row */
     .sig-row {
       display: flex;
       gap: 1.5rem;
@@ -375,7 +361,6 @@
       font-size: 0.72rem;
     }
 
-    /* Divider */
     .divider {
       border: none;
       border-top: 1.5px solid var(--ink);
@@ -388,7 +373,6 @@
       margin: 0.5rem 0;
     }
 
-    /* Print button */
     .print-bar {
       max-width: 860px;
       margin: 0 auto 1.2rem;
@@ -440,14 +424,30 @@
       color: #555;
     }
 
-    /* Footer */
+    /* ── UPDATED FOOTER ── */
     .form-footer {
-      font-size: 0.6rem;
-      text-align: center;
+      font-size: 0.58rem;
       margin-top: 0.6rem;
       color: #555;
       border-top: 1px solid #ccc;
       padding-top: 0.4rem;
+    }
+
+    .form-footer-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+
+    .form-footer-center {
+      text-align: center;
+      flex: 1;
+    }
+
+    .form-footer-left {
+      white-space: nowrap;
+      font-weight: 600;
     }
 
     /* ===================== RESPONSIVE STYLES ===================== */
@@ -455,59 +455,84 @@
       body {
         padding: 0.5rem;
       }
+
       .form-page {
         padding: 1.5rem 1rem;
       }
+
       .header-box {
         flex-direction: column;
         align-items: stretch;
       }
+
       .logo {
         width: 100%;
         height: auto;
         padding: 1rem;
       }
+
       .logo-inner {
         max-height: 80px;
       }
+
       .office-cell {
         border-left: none;
         border-top: 1px solid var(--ink);
         padding: 0.5rem 1rem;
       }
-      .two-col, .three-col, .four-col {
+
+      .two-col,
+      .three-col,
+      .four-col {
         grid-template-columns: 1fr;
         gap: 0.8rem;
       }
+
       .qa-row {
         flex-direction: column;
       }
+
       .answer-col {
         min-width: 100%;
         margin-top: 0.5rem;
       }
+
       .sig-row {
         flex-direction: column;
         gap: 1rem;
         align-items: stretch;
       }
+
       .sig-field {
         width: 100%;
       }
+
       .covers-row {
         flex-direction: column;
         gap: 0.2rem;
       }
+
       .covers-field {
         min-width: 100%;
         margin-bottom: 0.5rem;
       }
+
       .print-bar {
         flex-direction: column;
         gap: 0.5rem;
       }
+
       .print-bar .btn {
         width: 100%;
+      }
+
+      .form-footer-row {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .form-footer-left {
+        text-align: center;
       }
     }
 
@@ -524,10 +549,8 @@
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
         zoom: 0.9;
-        /* Scales down in WebKit/Blink to help fit to one page */
       }
 
-      /* Reduce margins and paddings for print to fit on one page */
       .section-block {
         margin-bottom: 0.35rem !important;
         padding: 0.3rem 0.5rem !important;
@@ -572,7 +595,6 @@
         display: none !important;
       }
 
-      /* All colors → black/white */
       * {
         color: black !important;
         background: white !important;
@@ -633,6 +655,45 @@
       input[type="radio"] {
         accent-color: black !important;
       }
+
+      .form-footer {
+        color: black !important;
+      }
+    }
+
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 5mm;
+      }
+
+      html,
+      body {
+        width: 210mm;
+        height: 297mm;
+      }
+
+      body {
+        zoom: 0.62 !important;
+      }
+
+      .form-page {
+        transform-origin: top left;
+      }
+
+      .section-block {
+        margin-bottom: 2px !important;
+        padding: 3px !important;
+      }
+
+      textarea {
+        min-height: 28px !important;
+      }
+
+      .declaration-box {
+        font-size: 0.50rem !important;
+        line-height: 1.2 !important;
+      }
     }
   </style>
 </head>
@@ -654,9 +715,7 @@
     <div class="header-box">
       <div class="logo">
         <img src="Logoas 2.svg" alt="SLIC Logo" class="logo-inner">
-
       </div>
-
       <div class="title-cell">
         <div
           style="font-family:'IM Fell English',serif; font-size:1.1rem; font-weight:700; letter-spacing:0.5px; color:var(--accent);">
@@ -680,8 +739,8 @@
     <!-- Notice -->
     <div class="notice-box">
       <strong>VERY IMPORTANT:</strong> Incorrect answers or failure to disclose all material facts may render the
-      insurance inoperative. Material facts are those which would influence acceptance or assessment of the insurance
-      risk. If you are in doubt, please disclose them or seek advice from your Agent or the Corporation. Pay Luxury/Semi
+      insurance inoperative. Material facts are those which would influence acceptance or assessment of the Insurance
+      risk, if you are in doubt, please disclose them or seek advice from your Agent or the Corporation. Pay Luxury/Semi
       Luxury tax or produce paid receipt (if applicable). The driver should possess a valid License &amp; Medical
       Certificate (if applicable) to drive.
     </div>
@@ -775,7 +834,6 @@
     <!-- Section 3 -->
     <div class="section-block">
       <div class="section-title"><span class="section-num">3.</span> Vehicle Usage</div>
-
       <div class="qa-row" style="align-items:flex-start;">
         <div class="qa-question">
           <div style="margin-bottom:0.4rem;">(a) Type of vehicle as appearing in the registration book (Motor Cycle,
@@ -791,9 +849,6 @@
           <div class="checkbox-group" style="margin-left:1rem;">
             <label class="checkbox-item"><input type="radio" name="cargo" value="passenger"> Passenger</label>
             <label class="checkbox-item"><input type="radio" name="cargo" value="goods"> Goods</label>
-            <div class="field-row" style="margin-left:0.5rem;">
-
-            </div>
           </div>
         </div>
         <div class="answer-col">
@@ -878,7 +933,6 @@
     <div class="section-block">
       <div class="section-title"><span class="section-num">9.</span> Additional Covers Required (Please tick with the
         limit)</div>
-
       <div class="covers-row">
         <span class="covers-label">(a) Workmen's Compensation Insurance to
           Driver/Cleaner/Attendant/Conductor/Labourer</span>
@@ -902,7 +956,6 @@
           only)</span>
         <div class="covers-field"><input type="text" placeholder="(e)"></div>
       </div>
-
       <div style="font-size:0.72rem; margin-top:0.5rem; margin-bottom:0.3rem; font-weight:600;">Mark the Section below:
       </div>
       <div class="amount-row">
@@ -932,7 +985,7 @@
       </div>
     </div>
 
-    <!-- Policy Commencement -->
+    <!-- Section 11 — Policy Commencement + Declaration + Signatures -->
     <div class="section-block">
       <div class="section-title"><span class="section-num">11.</span> Policy Commencement</div>
       <div
@@ -949,8 +1002,9 @@
 
       <!-- Personal Data Protection Clause -->
       <div class="declaration-box">
-        <div style="font-weight:700; font-size:0.65rem; margin-bottom:4px;">Personal Data Protection Clause <em>(In
-            Accordance with the personal data protection Act No. 9 of 2022):</em></div>
+        <div style="font-weight:700; font-size:0.65rem; margin-bottom:4px;">Personal Data Protection Clause
+          <em>(In Accordance with the personal data protection Act No. 9 of 2022):</em>
+        </div>
         <p>The undersigned hereby consents to the collection, use and transfer of personal data as mentioned in this
           paragraph. The undersigned understands that the Company holds certain personal information about him/her
           including Full name, Address, Date of Birth, Gender, National Identity Card/Passport Details, Job title,
@@ -1026,16 +1080,24 @@
           <div style="font-size:0.62rem; margin-top:2px; text-align:center;">Signature of the Proposer</div>
         </div>
         <div style="flex:1; text-align:center;">
-          <div style="border-bottom:1.5px solid #888; min-width:150px; display:inline-block; min-height:24px;"><input
-              type="text" placeholder=""></div>
+          <div style="border-bottom:1.5px solid #888; min-width:150px; display:inline-block; min-height:24px;">
+            <input type="text" placeholder="">
+          </div>
           <div style="font-size:0.62rem; margin-top:2px;">Date</div>
         </div>
-
       </div>
 
+      <!-- ── UPDATED FOOTER with Form No + two lines ── -->
       <div class="form-footer">
-        Sri Lanka Insurance Corporation (General) Ltd, No. 21, Vauxhall Street, Colombo, Sri Lanka &nbsp;|&nbsp; Tel:
-        0112 357 357
+        <div class="form-footer-row">
+          <div class="form-footer-left">Form No: 7065 S/E/A</div>
+          <div class="form-footer-center">
+            Sri Lanka Insurance Corporation (General) Ltd, No. 21, Vauxhall Street, Colombo, Sri Lanka &nbsp;|&nbsp;
+            Tel: 0112 357 357<br>
+            Sri Lanka Insurance Corporation General Ltd. is licensed by the Insurance Regulatory Commission of Sri Lanka
+            (IRCSL).
+          </div>
+        </div>
       </div>
 
     </div>
