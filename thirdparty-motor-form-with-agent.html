@@ -462,7 +462,7 @@
     }
 
     /* ===================== RESPONSIVE STYLES ===================== */
-    @media (max-width: 768px) {
+    /* @media (max-width: 768px) {
       body {
         padding: 0.5rem;
       }
@@ -539,7 +539,7 @@
       .form-footer-left {
         text-align: center;
       }
-    }
+    } */
 
     /* ===================== PRINT STYLES ===================== */
     @media print {
@@ -554,159 +554,19 @@
         margin: 0 !important;
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
-        zoom: 0.7 !important;
+        zoom: 0.68 !important;
       }
 
-      /* Each .form-page fills one A4 sheet; add a forced break after page 1 */
       .form-page {
         box-shadow: none !important;
         border: none !important;
-        padding: 0 !important;
+        padding: 0.5rem !important;
         width: 1080px !important;
         max-width: 1080px !important;
         margin: 0 auto !important;
-      }
-
-      /* First page: force break after it so page 2 starts on a new sheet */
-      #form {
         page-break-after: always;
-        break-after: page;
-      }
-
-      /* Second page: always start on a new sheet */
-      #page2 {
-        page-break-before: always;
-        break-before: page;
-      }
-
-      /* Hide the on-screen separator label in print */
-      .page-break-label {
-        display: none !important;
-      }
-
-      /* Reduce base font size to fit content on one A4 page */
-      body,
-      input,
-      textarea,
-      select {
-        font-size: 0.72rem !important;
-      }
-
-      .section-block {
-        margin-bottom: 0.7rem !important;
-        padding: 0.25rem 0.4rem !important;
-        page-break-inside: avoid;
-        break-inside: avoid;
-        gap: 0.5rem !important;
-      }
-
-      .section-title {
-        font-size: 0.74rem !important;
-      }
-
-      .notice-box {
-        padding: 0.15rem 0.3rem !important;
-        margin-bottom: 0.2rem !important;
-        font-size: 0.6rem !important;
-        line-height: 1.2rem !important;
-      }
-
-      .declaration-box {
-        padding: 0.2rem 0.3rem !important;
-        margin: 0.15rem 0 !important;
-        font-size: 0.55rem !important;
-        line-height: 1.15 !important;
-      }
-
-      .office-cell {
-      border-left: 1px solid var(--ink) !important;
-      padding: 0.2rem 0.4rem !important;
-      font-size: 0.62rem !important;
-      min-width: 130px !important;
-      display: flex !important;
-      flex-direction: column !important;
-      gap: 3px  !important;
-    }
-
-    .office-cell .label {
-      font-weight: 700;
-      font-size: 0.6rem;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .office-cell .field-line {
-      border-bottom: 1px solid var(--ink);
-      min-height: 14px;
-    }
-
-      /* All colors → black/white */
-      * {
-        color: black !important;
-        background: white !important;
-        border-color: black !important;
-      }
-
-      .notice-box {
-        background: #f0f0f0 !important;
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-      }
-
-      .declaration-box {
-        background: #f5f5f5 !important;
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-      }
-
-      input[type="text"],
-      input[type="date"],
-      input[type="number"],
-      select,
-      textarea {
-        color: black !important;
-        background: transparent !important;
-      }
-
-      input[type="checkbox"],
-      input[type="radio"] {
-        accent-color: black !important;
-      }
-
-      .divider,
-      .divider-light {
-        margin: 0.15rem 0 !important;
-      }
-
-      .sig-row {
-        margin-top: 0.1rem !important;
-        margin-bottom: 0.1rem !important;
-      }
-
-      .qa-row {
-        margin-bottom: 0.15rem !important;
-      }
-
-      .covers-row {
-        margin-bottom: 0.1rem !important;
-      }
-
-      .two-col,
-      .three-col,
-      .four-col,
-      .field-row {
-        margin-bottom: 0.1rem !important;
-      }
-
-      .header-box {
-        margin-bottom: 0.15rem !important;
-      }
-
-      .logo {
-        width: 100px !important;
-        height: 100px !important;
-        padding: 0.1rem !important;
-        margin-left: 1rem !important;
+        background: #fff;
+        margin-top: 5mm !important;
       }
 
       .print-bar {
@@ -915,7 +775,6 @@
         <div class="field-inline"><input type="text" placeholder="Enter details here..."></div>
       </div>
     </div>
-
     <!-- Section 6 -->
     <div class="section-block">
       <div class="section-title"><span class="section-num">6.</span> Physical Impairments</div>
@@ -955,11 +814,6 @@
         </div>
       </div>
     </div>
-  </div>
-
-  <div class="page-break-label">Page 2</div>
-  <!-- Page 2 -->
-  <div class="form-page" id="page2">
     <!-- Section 8 -->
     <div class="section-block">
       <div class="section-title"><span class="section-num">8.</span> Vehicle Ownership</div>
@@ -1014,6 +868,13 @@
       <div style="font-size:0.6rem; color:#666; margin-top:4px;">(Third party property damage private cars are limited
         to a maximum of 100,000. For other vehicles Rs. 15,000 – No premium charged)</div>
     </div>
+
+  </div>
+
+
+  <!-- Page 2 -->
+
+  <div class="form-page" id="page2">
 
     <!-- Section 10 -->
     <div class="section-block">
