@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SLIC - Comprehensive Motor Insurance Proposal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Source+Sans+3:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1a1a1a;
+            --paper: #fdfcf8;
+            --rule: #888;
+            --accent: #1c3f6e;
+            --green: #188b8f;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Sans 3', sans-serif;
+            background: #e8e4dc;
+            color: var(--ink);
+            min-height: 100vh;
+            padding: 2rem 1rem;
+        }
+
+        .form-page {
+            background: var(--paper);
+            max-width: 860px;
+            margin: 0 auto 2rem auto;
+            padding: 2.5rem 3rem;
+            box-shadow: 0 4px 40px rgba(0, 0, 0, 0.18), 0 1px 4px rgba(0, 0, 0, 0.08);
+            border: 1px solid #ccc;
+            position: relative;
+        }
+
+        .form-page::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .form-page>* {
+            position: relative;
+            z-index: 1;
+        }
+
+        .header-box {
+            border: 1px solid var(--accent);
+            display: flex;
+            align-items: center;
+            margin-bottom: 0;
+        }
+
+        .logo {
+            color: white;
+            padding: 0.2rem 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100px;
+            height: 100px;
+            background: transparent;
+        }
+
+        .title-cell {
+            flex: 1;
+            padding: 0.7rem 1rem;
+            text-align: center;
+        }
+
+        .title-cell h1 {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--accent);
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-ref {
+            font-size: 0.65rem;
+            text-align: right;
+            margin-bottom: 4px;
+            font-style: italic;
+            color: #555;
+        }
+
+        .notice-box {
+            border: 1px solid var(--accent);
+            border-top: none;
+            padding: 0.5rem 0.8rem;
+            font-size: 0.62rem;
+            line-height: 1.5;
+            margin-bottom: 0.8rem;
+        }
+
+        .notice-box strong {
+            color: #8b0000;
+        }
+
+        .section-block {
+            border-left: 3px solid var(--green);
+            padding: 0.5rem 0.7rem;
+            margin-bottom: 0.85rem;
+            border: 1px solid var(--accent);
+        }
+
+        .section-title {
+            font-weight: 700;
+            font-size: 0.78rem;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .field-row {
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 0.5rem;
+        }
+
+        .field-label {
+            font-size: 0.78rem;
+            color: #444;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .field-label-bold {
+            font-weight: 600;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        input[type="number"],
+        select,
+        textarea {
+            border: none;
+            border-bottom: 1.5px solid #888;
+            background: transparent;
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 0.78rem;
+            padding: 1px 3px;
+            color: var(--ink);
+            outline: none;
+            transition: border-color 0.2s;
+            width: 100%;
+        }
+
+        input[type="text"]:focus,
+        input[type="date"]:focus,
+        input[type="number"]:focus,
+        select:focus,
+        textarea:focus {
+            border-bottom-color: var(--accent);
+            background: rgba(28, 63, 110, 0.04);
+        }
+
+        .field-inline {
+            flex: 1;
+            min-width: 80px;
+        }
+
+        textarea {
+            resize: none;
+            border-radius: 2px;
+            padding: 4px 6px;
+            margin-top: 4px;
+        }
+
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .three-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 0.5rem 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .checkbox-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
+            font-size: 0.78rem;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+        }
+
+        input[type="checkbox"],
+        input[type="radio"] {
+            width: 14px;
+            height: 14px;
+            accent-color: var(--accent);
+            cursor: pointer;
+        }
+
+        .qa-row {
+            display: flex;
+            gap: 0.8rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .qa-question {
+            flex: 1;
+            font-size: 0.78rem;
+            line-height: 1.5;
+        }
+
+        .qa-answer {
+            min-width: 130px;
+            display: flex;
+            gap: 10px;
+            align-items: baseline;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 0.8rem;
+            font-size: 0.78rem;
+        }
+
+        table th,
+        table td {
+            border: 1px solid var(--accent);
+            padding: 0.4rem;
+            text-align: left;
+        }
+
+        table th {
+            background: rgba(28, 63, 110, 0.05);
+            font-weight: 600;
+            text-align: center;
+        }
+
+        table td input {
+            border: none;
+        }
+
+        .declaration-box {
+            border: 1px solid #bbb;
+            padding: 0.6rem 0.8rem;
+            font-size: 0.7rem;
+            line-height: 1.6;
+            margin: 0.7rem 0;
+        }
+
+        .sig-row {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-end;
+            margin-top: 1.5rem;
+        }
+
+        .sig-field {
+            flex: 1;
+            border-bottom: 1.5px solid #888;
+            min-height: 24px;
+            font-size: 0.78rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .divider {
+            border: none;
+            border-top: 1.5px solid var(--ink);
+            margin: 0.8rem 0;
+        }
+
+        .print-bar {
+            max-width: 860px;
+            margin: 0 auto 1.2rem;
+            display: flex;
+            gap: 0.8rem;
+            justify-content: flex-end;
+        }
+
+        .btn {
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 600;
+            padding: 0.45rem 1.2rem;
+            border: none;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+            transition: all 0.2s;
+            border-radius: 2px;
+        }
+
+        .btn-primary {
+            background: var(--green);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #07868f;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--green);
+            border: 1.5px solid var(--green);
+        }
+
+        .btn-outline:hover {
+            background: var(--green);
+            color: white;
+        }
+
+        .question-number {
+            font-weight: 600;
+            margin-right: 0.3rem;
+        }
+
+        .nested-fields {
+            margin-left: 1.5rem;
+            margin-top: 0.4rem;
+        }
+
+        @media print {
+            @page {
+                size: A4;
+                margin: 1mm;
+            }
+
+            body {
+                background: white !important;
+                padding: 0.5rem !important;
+                margin: 0 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+                zoom: 0.85 !important;
+            }
+
+            .form-page {
+                box-shadow: none !important;
+                border: none !important;
+                padding: 0 !important;
+                width: 1080px !important;
+                max-width: 1080px !important;
+                margin: 0 auto !important;
+                page-break-after: always;
+            }
+
+            .print-bar {
+                display: none !important;
+            }
+
+            .form-page::before {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="print-bar">
+        <button class="btn btn-outline" onclick="window.print()">🖨 Print Empty</button>
+        <button class="btn btn-primary" onclick="window.print()">🖨 Print Filled</button>
+    </div>
+
+    <!-- PAGE 1 -->
+    <div class="form-page" id="page1">
+        <div class="form-ref">MO/UW/NB/E/20</div>
+
+        <div class="header-box">
+            <div class="title-cell">
+                <h1>COMPREHENSIVE MOTOR INSURANCE PROPOSAL</h1>
+            </div>
+        </div>
+
+        <div class="notice-box">
+            <strong>IMPORTANT:</strong> Please answer all questions. Benefits under the policy may not be payable in the
+            event of non-disclosure or misrepresentation of material facts. If you are in doubt as to whether any fact
+            is material, please disclose the same. Pay Luxury/Semi Luxury tax or produce paid receipt (if applicable).
+            The driver should possess a valid driving licence & medical certificate (if applicable) to drive.
+        </div>
+
+        <div class="section-block">
+            <div class="two-col">
+                <div class="field-row">
+                    <div class="field-label">Chassis No. (Write Only numbers & letters)</div>
+                    <div class="field-inline"><input type="text" /></div>
+                </div>
+                <div class="field-row">
+                    <div class="field-label">N.I.C. No / Bus Reg. No.</div>
+                    <div class="field-inline"><input type="text" /></div>
+                </div>
+                <div class="field-row">
+                    <div class="field-label">Vehicle Registered No.</div>
+                    <div class="field-inline"><input type="text" /></div>
+                </div>
+                <div class="field-row">
+                    <div class="field-label">Engine No.</div>
+                    <div class="field-inline"><input type="text" /></div>
+                </div>
+            </div>
+
+            <div class="two-col" style="align-items: start;">
+                <div>
+                    <div class="field-row">
+                        <span class="question-number">01.</span>
+                        <div class="field-label">Name in Full (Mr./Mrs./Miss.) Other</div>
+                    </div>
+                    <textarea rows="2" class="w-full"></textarea>
+                </div>
+                <div>
+                    <div class="field-row">
+                        <span class="question-number">02.</span>
+                        <div class="field-label">Address</div>
+                    </div>
+                    <textarea rows="2" class="w-full"></textarea>
+                </div>
+            </div>
+
+            <div class="two-col">
+                <div class="field-row">
+                    <span class="question-number">03.</span>
+                    <div class="field-label">Tel No.</div>
+                    <div class="field-inline"><input type="text" /></div>
+                </div>
+                <div class="field-row">
+                    <span class="question-number">04.</span>
+                    <div class="field-label">E-mail Address</div>
+                    <div class="field-inline"><input type="text" /></div>
+                </div>
+                <div class="field-row">
+                    <span class="question-number">05.</span>
+                    <div class="field-label">District</div>
+                    <div class="field-inline"><input type="text" /></div>
+                </div>
+                <div class="field-row">
+                    <span class="question-number">06.</span>
+                    <div class="field-label">Age</div>
+                    <div class="field-inline"><input type="number" /></div>
+                </div>
+            </div>
+
+            <div class="field-row">
+                <span class="question-number">07.</span>
+                <div class="field-label">VAT Registration No.</div>
+                <div class="field-inline"><input type="text" /></div>
+            </div>
+
+            <div class="field-row">
+                <span class="question-number">08.</span>
+                <div class="field-label">Business/Profession/Occupation</div>
+                <div class="field-inline"><input type="text" /></div>
+            </div>
+
+            <hr class="divider-light my-2">
+
+            <div class="field-row mb-2">
+                <span class="question-number">09.</span>
+                <div class="field-label field-label-bold">Particulars of car to be insured</div>
+            </div>
+
+            <div class="two-col">
+                <div class="field-row">
+                    <div class="field-label">Vehicle Status:</div>
+                    <div class="checkbox-group">
+                        <label class="checkbox-item"><input type="radio" name="veh_status"> Brand New</label>
+                        <label class="checkbox-item"><input type="radio" name="veh_status"> Re-Condition</label>
+                        <label class="checkbox-item"><input type="radio" name="veh_status"> Second Hand</label>
+                    </div>
+                </div>
+                <div class="field-row">
+                    <div class="field-label">Date of First Reg:</div>
+                    <div class="field-inline"><input type="date" /></div>
+                </div>
+            </div>
+
+            <div class="two-col">
+                <div class="field-row">
+                    <div class="field-label">Years of Manufacture:</div>
+                    <div class="field-inline"><input type="number" placeholder="YYYY" /></div>
+                </div>
+                <div>
+                    <div class="field-row">
+                        <div class="field-label">Do you wish to insure the vehicle on duty free basis?</div>
+                        <div class="checkbox-group">
+                            <label class="checkbox-item"><input type="radio" name="duty_free"> Yes</label>
+                            <label class="checkbox-item"><input type="radio" name="duty_free"> No</label>
+                        </div>
+                    </div>
+                    <div class="field-row">
+                        <div class="field-label">If yes value Rs.:</div>
+                        <div class="field-inline"><input type="text" /></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="field-row">
+                <div class="field-label">Cylinder capacity:</div>
+                <div class="field-inline"><input type="text" /></div>
+            </div>
+
+            <div class="field-row">
+                <div class="field-label">Type of Fuel:</div>
+                <div class="checkbox-group">
+                    <label class="checkbox-item"><input type="radio" name="fuel_type"> Petrol</label>
+                    <label class="checkbox-item"><input type="radio" name="fuel_type"> Diesel</label>
+                    <label class="checkbox-item"><input type="radio" name="fuel_type"> Hybrid</label>
+                    <label class="checkbox-item"><input type="radio" name="fuel_type"> Plug-in Hybrid</label>
+                    <label class="checkbox-item"><input type="radio" name="fuel_type"> Electric</label>
+                    <label class="checkbox-item"><input type="radio" name="fuel_type"> Other</label>
+                </div>
+            </div>
+
+            <div class="three-col">
+                <div class="field-row">
+                    <div class="field-label">Seating capacity including driver:</div>
+                    <div class="field-inline"><input type="number" /></div>
+                </div>
+                <div class="field-row">
+                    <div class="field-label">Make:</div>
+                    <div class="field-inline"><input type="text" /></div>
+                </div>
+                <div class="field-row">
+                    <div class="field-label">Model:</div>
+                    <div class="field-inline"><input type="text" /></div>
+                </div>
+            </div>
+
+            <div class="field-row">
+                <div class="field-label">Proposer's Estimate of present Market Value, including all fittings Rs.:</div>
+                <div class="field-inline"><input type="text" /></div>
+            </div>
+
+            <div class="notice-box mt-2 mb-2" style="font-size: 0.65rem; background: #f9f9f9; border-color: #ddd;">
+                Please note that the amount inserted here should be the present market value of the vehicle. Otherwise
+                under insurance penalty will be applied in an event of a claim. The contract will be voidable in the
+                event of wilful understatement of value. If the Value is duty free, please state so.
+            </div>
+
+            <div class="field-row mt-3">
+                <span class="question-number">10.</span>
+                <div class="field-label">Describe accessories and extra fittings included in the estimated value of car.
+                </div>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th width="8%">Item No.</th>
+                        <th width="25%">Description (eg.)<br>A.C., Air Bags,<br>Alloy Wheels etc.</th>
+                        <th width="15%">Model and Make</th>
+                        <th width="15%">Factory Fitted<br>or Purchased</th>
+                        <th width="15%">Date of<br>Purchase</th>
+                        <th width="12%">Price paid<br>if Purchased</th>
+                        <th width="10%">Estimated of<br>Present Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td align="center">(a)</td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="date" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                    </tr>
+                    <tr>
+                        <td align="center">(b)</td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="date" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                    </tr>
+                    <tr>
+                        <td align="center">(c)</td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="date" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                    </tr>
+                    <tr>
+                        <td align="center">(d)</td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="date" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="qa-row">
+                <div class="qa-question">
+                    <span class="question-number">11.</span> Is the Car has been modified in any manner from the
+                    manufacturer's specification - Please provide details
+                    <textarea rows="2" class="w-full mt-1"></textarea>
+                </div>
+            </div>
+
+            <div class="qa-row">
+                <div class="qa-question"><span class="question-number">12.</span> Is the Motor Car in good condition &
+                    free of accidents?</div>
+                <div class="qa-answer">
+                    <label class="checkbox-item"><input type="radio" name="good_condition"> Yes</label>
+                    <label class="checkbox-item"><input type="radio" name="good_condition"> No</label>
+                </div>
+            </div>
+
+            <div class="qa-row">
+                <div class="qa-question"><span class="question-number">13.</span> Do you possess a valid licence to
+                    drive a motor car?</div>
+                <div class="qa-answer">
+                    <label class="checkbox-item"><input type="radio" name="valid_licence"> Yes</label>
+                    <label class="checkbox-item"><input type="radio" name="valid_licence"> No</label>
+                </div>
+            </div>
+
+            <div class="qa-row">
+                <div class="qa-question">
+                    <span class="question-number">14.</span> Provide records of all accidents/losses during the past 3
+                    years with any Motor Vehicle owned or driven by you/your driver.
+                    <textarea rows="3" class="w-full mt-1"></textarea>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- PAGE 2 -->
+    <div class="form-page" id="page2">
+        <div class="section-block">
+            <div class="qa-row">
+                <div class="qa-question">
+                    <span class="question-number">15.</span> To the best of your knowledge and belief do you or does any
+                    other person who drives, suffer from defective vision/hearing/from other physical infirmity? If so,
+                    give details.
+                    <textarea rows="2" class="w-full mt-1"></textarea>
+                </div>
+            </div>
+
+            <div class="qa-row">
+                <div class="qa-question">
+                    <span class="question-number">16.</span> To the best of your knowledge, have you or any other person
+                    who will drive this car been convicted of any offence in connection with a motor vehicle during the
+                    last five years? If so please provide details.
+                    <textarea rows="2" class="w-full mt-1"></textarea>
+                </div>
+            </div>
+
+            <div class="qa-row">
+                <div class="qa-question">
+                    <span class="question-number">17.</span> Where was this vehicle insured previously? Provide Name/s
+                    of company/ies
+                    <textarea rows="2" class="w-full mt-1"></textarea>
+                </div>
+            </div>
+
+            <div class="qa-row" style="flex-direction: column;">
+                <div class="qa-question" style="margin-bottom: 0.4rem;">
+                    <span class="question-number">18.</span> Has any insurer ever:
+                </div>
+                <div class="nested-fields">
+                    <div class="field-row">
+                        <span class="question-number">(a)</span>
+                        <div class="field-label">Declined your proposal or refused to renew your policy?</div>
+                        <div class="field-inline"><input type="text" /></div>
+                    </div>
+                    <div class="field-row" style="align-items: flex-start;">
+                        <span class="question-number">(b)</span>
+                        <div class="field-label" style="white-space: normal;">Required you to bear the first portion of
+                            any loss/required an increased premium/imposed special condition/s/cancelled your
+                            policy?<br>If yes, Please mention details.</div>
+                    </div>
+                    <textarea rows="2" class="w-full"></textarea>
+                </div>
+            </div>
+
+            <div class="field-row mt-2">
+                <span class="question-number">19.</span>
+                <div class="field-label">Is the insurance required on an annual basis? If not state period required?
+                </div>
+                <div class="field-inline"><input type="text" /></div>
+            </div>
+
+            <div class="field-row mt-2" style="border: 1px solid #888; padding: 0.5rem; display: block;">
+                <div class="field-row">
+                    <span class="question-number">20.</span>
+                    <div class="field-label">Have you obtained a cover note for this business</div>
+                    <div class="checkbox-group" style="margin: 0 1rem;">
+                        <label class="checkbox-item"><input type="radio" name="cover_note"> Yes</label>
+                        <label class="checkbox-item"><input type="radio" name="cover_note"> No</label>
+                    </div>
+                    <div class="field-label">If so cover note No.</div>
+                    <div class="field-inline"><input type="text" /></div>
+                </div>
+                <div class="field-row">
+                    <div class="field-label pl-6">Reason:</div>
+                    <div class="field-inline"><input type="text" /></div>
+                </div>
+                <div class="field-row">
+                    <div class="field-label pl-6">Period from:</div>
+                    <div class="field-inline"><input type="date" /></div>
+                    <div class="field-label px-2">to</div>
+                    <div class="field-inline"><input type="date" /></div>
+                </div>
+                <div class="mt-2"
+                    style="font-size: 0.72rem; font-weight: 600; text-align: center; border-top: 1px solid #ddd; padding-top: 4px;">
+                    IMPORTANT: Validity of Insurance will cease on change of ownership of vehicle.
+                </div>
+            </div>
+
+            <div class="field-row mt-3">
+                <span class="question-number">21.</span>
+                <div class="field-label">Are you the owner of the car and is it registered in your name?</div>
+                <div class="checkbox-group ml-3">
+                    <label class="checkbox-item"><input type="radio" name="is_owner"> Yes</label>
+                    <label class="checkbox-item"><input type="radio" name="is_owner"> No</label>
+                </div>
+            </div>
+            <div class="nested-fields">
+                <div class="field-row">
+                    <span class="question-number">(a)</span>
+                    <div class="field-label">If not, name and address of registered owner</div>
+                </div>
+                <div class="field-row">
+                    <div class="field-label">NAME:</div>
+                    <div class="field-inline"><input type="text" /></div>
+                </div>
+                <div class="field-row">
+                    <div class="field-label">ADDRESS:</div>
+                    <div class="field-inline"><input type="text" /></div>
+                </div>
+                <div class="field-row mt-2">
+                    <span class="question-number">(b)</span>
+                    <div class="field-label">The nature of the interest you have to propose for insurance in your name?
+                    </div>
+                </div>
+                <div class="field-row">
+                    <div class="field-inline"><input type="text" /></div>
+                </div>
+            </div>
+
+            <div class="field-row mt-3">
+                <span class="question-number">22.</span>
+                <span class="question-number">(a)</span>
+                <div class="field-label">Is there an assignment?</div>
+                <div class="checkbox-group mx-3">
+                    <label class="checkbox-item"><input type="radio" name="assignment"> Yes</label>
+                    <label class="checkbox-item"><input type="radio" name="assignment"> No</label>
+                </div>
+                <div class="checkbox-group">
+                    <label class="checkbox-item"><input type="radio" name="assignment_type"> Hire Purchase/Lease</label>
+                    <label class="checkbox-item"><input type="radio" name="assignment_type"> Mortgage</label>
+                </div>
+            </div>
+            <div class="nested-fields">
+                <div class="field-row">
+                    <span class="question-number">(b)</span>
+                    <div class="field-label">If so, state the name and address of assignee</div>
+                </div>
+                <div class="field-row">
+                    <div class="field-label">NAME:</div>
+                    <div class="field-inline"><input type="text" /></div>
+                </div>
+                <div class="field-row">
+                    <div class="field-label">ADDRESS:</div>
+                    <div class="field-inline"><input type="text" /></div>
+                </div>
+            </div>
+
+            <div class="two-col mt-4" style="align-items: start; gap: 0;">
+                <!-- Left Table 23 & 24 -->
+                <div style="border: 1px solid #888; border-right: none;">
+                    <table style="margin-bottom: 0; border: none;">
+                        <thead>
+                            <tr>
+                                <th style="border-left: none; border-top: none;"><span
+                                        class="question-number">23.</span> Personal Accident Benefits<br><span
+                                        style="font-weight:normal; font-size: 0.65rem;">(Please tick required
+                                        covers)</span></th>
+                                <th style="border-top: none;">Amount</th>
+                                <th style="border-top: none;">SRCC</th>
+                                <th style="border-right: none; border-top: none;">TC</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="border-left: none;">Insured</td>
+                                <td><input type="text" /></td>
+                                <td align="center"><input type="checkbox" /></td>
+                                <td align="center" style="border-right: none;"><input type="checkbox" /></td>
+                            </tr>
+                            <tr>
+                                <td style="border-left: none;">Named Person (Nominate)</td>
+                                <td><input type="text" /></td>
+                                <td align="center"><input type="checkbox" /></td>
+                                <td align="center" style="border-right: none;"><input type="checkbox" /></td>
+                            </tr>
+                            <tr>
+                                <td style="border-left: none;">(a) <input type="text" style="width: 80%" /></td>
+                                <td><input type="text" /></td>
+                                <td align="center"><input type="checkbox" /></td>
+                                <td align="center" style="border-right: none;"><input type="checkbox" /></td>
+                            </tr>
+                            <tr>
+                                <td style="border-left: none;">(b) <input type="text" style="width: 80%" /></td>
+                                <td><input type="text" /></td>
+                                <td align="center"><input type="checkbox" /></td>
+                                <td align="center" style="border-right: none;"><input type="checkbox" /></td>
+                            </tr>
+                            <tr>
+                                <td style="border-left: none;">(c) <input type="text" style="width: 80%" /></td>
+                                <td><input type="text" /></td>
+                                <td align="center"><input type="checkbox" /></td>
+                                <td align="center" style="border-right: none;"><input type="checkbox" /></td>
+                            </tr>
+                            <tr>
+                                <td style="border-left: none;">(d) <input type="text" style="width: 80%" /></td>
+                                <td><input type="text" /></td>
+                                <td align="center"><input type="checkbox" /></td>
+                                <td align="center" style="border-right: none;"><input type="checkbox" /></td>
+                            </tr>
+                            <tr>
+                                <td style="border-left: none;">Passengers only/Passengers including driving seat</td>
+                                <td><input type="text" /></td>
+                                <td align="center"><input type="checkbox" /></td>
+                                <td align="center" style="border-right: none;"><input type="checkbox" /></td>
+                            </tr>
+                            <tr>
+                                <td style="border-left: none;">Driver</td>
+                                <td><input type="text" /></td>
+                                <td align="center"><input type="checkbox" /></td>
+                                <td align="center" style="border-right: none;"><input type="checkbox" /></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div
+                        style="padding: 0.4rem; font-size: 0.65rem; border-top: 1px solid var(--accent); border-bottom: 1px solid var(--accent);">
+                        <strong>Note:</strong> SRCC/TC should be selected for the vehicle to extend for PAB and/or WCI.
+                        If required, please tick (✓)
+                    </div>
+                    <div style="padding: 0.5rem; font-size: 0.72rem;">
+                        <div class="field-row" style="white-space: normal;">
+                            <span class="question-number">24.</span> If you are entitled to a No Claim Bonus on previous
+                            Motor car insurance state percentage and attach documents.
+                        </div>
+                        <textarea rows="2" class="w-full"></textarea>
+                    </div>
+                </div>
+
+                <!-- Right side 25 & 26 -->
+                <div style="border: 1px solid #888;">
+                    <div style="padding: 0.5rem; font-weight: 600; border-bottom: 1px solid #888; font-size: 0.78rem;">
+                        <span class="question-number">25.</span> Indicate additional covers required - please tick (✓)
+                    </div>
+
+                    <div style="padding: 0.5rem; font-size: 0.72rem;">
+                        <div class="field-row">
+                            <span class="question-number">(a)</span>
+                            <div class="field-label" style="white-space: normal;">Do you require Workmen's Compensation
+                                Insurance benefits to paid Driver</div>
+                        </div>
+                        <div class="checkbox-group" style="justify-content: space-around; margin-bottom: 0.5rem;">
+                            <label class="checkbox-item"><input type="radio" name="wc_driver"> Yes</label>
+                            <label class="checkbox-item"><input type="radio" name="wc_driver"> No</label>
+                            <label class="checkbox-item"><input type="checkbox"> SRCC</label>
+                            <label class="checkbox-item"><input type="checkbox"> TC</label>
+                        </div>
+
+                        <div class="field-row" style="border-top: 1px solid #eee; padding-top: 0.5rem;">
+                            <span class="question-number">(b)</span>
+                            <div class="field-label" style="flex:1;">Flood & Natural Disaster</div>
+                            <div class="checkbox-group">
+                                <label class="checkbox-item"><input type="radio" name="flood"> Yes</label>
+                                <label class="checkbox-item"><input type="radio" name="flood"> No</label>
+                            </div>
+                        </div>
+
+                        <div class="field-row"
+                            style="border-top: 1px solid #eee; padding-top: 0.5rem; flex-direction: column;">
+                            <div>
+                                <span class="question-number">(c)</span>
+                                <span class="field-label">State amount of enhanced towing charges cover if
+                                    required</span>
+                            </div>
+                            <div class="field-row w-full">
+                                <span>Rs.</span>
+                                <div class="field-inline"><input type="text" /></div>
+                            </div>
+                        </div>
+
+                        <div class="field-row"
+                            style="border-top: 1px solid #eee; padding-top: 0.5rem; flex-direction: column;">
+                            <div>
+                                <span class="question-number">(d)</span>
+                                <span class="field-label" style="white-space: normal;">State amount of Air Bag
+                                    Additional Cover if required. In any event the liability of the company in respect
+                                    of air bag shall not exceed 50 per centum of the cost of a new replacement.</span>
+                            </div>
+                            <div class="field-row w-full">
+                                <span>Rs.</span>
+                                <div class="field-inline"><input type="text" /></div>
+                            </div>
+                        </div>
+
+                        <div class="field-row"
+                            style="border-top: 1px solid #eee; padding-top: 0.5rem; flex-direction: column;">
+                            <div>
+                                <span class="question-number">(e)</span>
+                                <span class="field-label">State amount of Special Windscreen cover if required.</span>
+                            </div>
+                            <div class="field-row w-full">
+                                <span>Rs.</span>
+                                <div class="field-inline"><input type="text" /></div>
+                            </div>
+                        </div>
+
+                        <div class="field-row" style="border-top: 1px solid #eee; padding-top: 0.5rem;">
+                            <span class="question-number">(f)</span>
+                            <div class="field-label" style="flex:1;">Vehicle Strike, Riot and Civil Commotion</div>
+                            <div class="checkbox-group">
+                                <label class="checkbox-item"><input type="radio" name="srcc"> Yes</label>
+                                <label class="checkbox-item"><input type="radio" name="srcc"> No</label>
+                            </div>
+                        </div>
+
+                        <div class="field-row" style="border-top: 1px solid #eee; padding-top: 0.5rem;">
+                            <span class="question-number">(g)</span>
+                            <div class="field-label" style="flex:1;">Vehicle Terrorism Cover</div>
+                            <div class="checkbox-group">
+                                <label class="checkbox-item"><input type="radio" name="terrorism"> Yes</label>
+                                <label class="checkbox-item"><input type="radio" name="terrorism"> No</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="border-top: 1px solid #888; padding: 0.5rem; font-size: 0.72rem;">
+                        <div class="field-row" style="white-space: normal;">
+                            <span class="question-number">26.</span> Are you or any other person learning to drive in
+                            this Motor car? If so, provide Names and Ages.
+                        </div>
+                        <div class="field-row">
+                            <div class="field-inline"><input type="text" placeholder="Name" /></div>
+                            <div style="width:50px">Age:</div>
+                            <div style="width:60px"><input type="number" /></div>
+                        </div>
+                        <div class="field-row">
+                            <div class="field-inline"><input type="text" placeholder="Name" /></div>
+                            <div style="width:50px">Age:</div>
+                            <div style="width:60px"><input type="number" /></div>
+                        </div>
+                        <div class="field-row">
+                            <div class="field-inline"><input type="text" placeholder="Name" /></div>
+                            <div style="width:50px">Age:</div>
+                            <div style="width:60px"><input type="number" /></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 3 -->
+    <div class="form-page" id="page3">
+        <div class="section-block">
+            <div class="qa-row">
+                <div class="qa-question" style="display: flex; flex-direction: column;">
+                    <div class="field-row">
+                        <span class="question-number">27.</span>
+                        <div class="field-label" style="white-space: normal;">Do you require Pinnacle cover (Applicable
+                            for private cars and private dual purpose vehicles)<br><span
+                                style="font-size: 0.65rem;">(Sum insured above Rs. 7 Million & within 8 years
+                                only)</span></div>
+                    </div>
+                </div>
+                <div class="qa-answer" style="align-items: center;">
+                    <label class="checkbox-item"><input type="radio" name="pinnacle"> Yes</label>
+                    <label class="checkbox-item"><input type="radio" name="pinnacle"> No</label>
+                </div>
+            </div>
+
+            <div class="qa-row">
+                <div class="qa-question" style="display: flex; flex-direction: column;">
+                    <div class="field-row">
+                        <span class="question-number">28.</span>
+                        <div class="field-label" style="white-space: normal;">Do you require warranty Cover (for Spare
+                            Parts)?<br><span style="font-size: 0.65rem;">(Subject to engineer's approval)</span></div>
+                    </div>
+                </div>
+                <div class="qa-answer" style="align-items: center;">
+                    <label class="checkbox-item"><input type="radio" name="warranty"> Yes</label>
+                    <label class="checkbox-item"><input type="radio" name="warranty"> No</label>
+                </div>
+            </div>
+
+            <div class="qa-row">
+                <div class="qa-question" style="display: flex; flex-direction: column;">
+                    <div class="field-row">
+                        <span class="question-number">29.</span>
+                        <div class="field-label" style="white-space: normal;">Do you require Agency Repair Facility
+                            (Applicable for Nominated Agencies only)<br><span style="font-size: 0.65rem;">(Subject to
+                                engineer's approval)</span></div>
+                    </div>
+                </div>
+                <div class="qa-answer" style="align-items: center;">
+                    <label class="checkbox-item"><input type="radio" name="agency"> Yes</label>
+                    <label class="checkbox-item"><input type="radio" name="agency"> No</label>
+                </div>
+            </div>
+
+            <div class="qa-row">
+                <div class="qa-question" style="display: flex; flex-direction: column;">
+                    <div class="field-row">
+                        <span class="question-number">30.</span>
+                        <div class="field-label" style="white-space: normal;">Whether there is an 'active' dash cam
+                            fixed in the vehicle<br><span style="font-size: 0.65rem;">(Subject to Engineer's/TO's
+                                verification)</span></div>
+                    </div>
+                </div>
+                <div class="qa-answer" style="align-items: center;">
+                    <label class="checkbox-item"><input type="radio" name="dashcam"> Yes</label>
+                    <label class="checkbox-item"><input type="radio" name="dashcam"> No</label>
+                </div>
+            </div>
+
+            <div class="field-row mt-3">
+                <span class="question-number">31.</span>
+                <div class="field-label">Provide details of all policies of insurance you currently hold with this
+                    company</div>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th width="35%">POLICY NAME</th>
+                        <th width="35%">POLICY NO./VEHICLE NO.</th>
+                        <th width="30%">SUM INSURED</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                        <td><input type="text" /></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="qa-row"
+                style="border: 1px solid var(--accent); padding: 0.5rem; border-bottom: none; margin-bottom: 0;">
+                <div class="qa-question">
+                    <span class="question-number">32.</span> Are you a political exposed person. If yes please specify?
+                    <textarea rows="2" class="w-full mt-1"></textarea>
+                </div>
+            </div>
+
+            <div class="field-row" style="border: 1px solid var(--accent); padding: 0.5rem; margin-bottom: 1rem;">
+                <span class="question-number">33.</span>
+                <div class="field-label" style="text-transform: uppercase;">Policy Period</div>
+                <div class="field-label ml-4">From</div>
+                <div class="field-inline"><input type="date" /></div>
+                <div class="field-label ml-4">To</div>
+                <div class="field-inline"><input type="date" /></div>
+            </div>
+
+            <div class="field-label-bold" style="font-size: 0.78rem;">Personal Data Protection Clause (In Accordance
+                with the personal data protection Act No. 9 of 2022)</div>
+            <div
+                style="font-size: 0.65rem; text-align: justify; line-height: 1.4; margin-bottom: 1rem; margin-top: 0.3rem;">
+                The undersigned hereby consents to the collection, use and transfer of personal data as mentioned in
+                this paragraph. The undersigned understands that the company holds certain personal information about
+                him/her including Full Name, Address, Date of Birth, Gender, National Identity Card/Passport Details,
+                Job Title, Telephone Number, Email Address, Educational & Professional Experience Business Activities,
+                Travel expenses information, Financial Details (eg. Credit/Debit Card & Bank Account Details etc.),
+                Identification checks & background vetting and Other Information including family life. The undersigned
+                further understand that the Company holds special categories of personal data concerning health and such
+                other information which may fall within the definition of "special categories of personal data", as
+                defined in the Data Protection Act, No. 09 of 2022. The undersigned further understands that it may be
+                necessary for the purposes of the relationship with the company, to share data with Reinsures, Actuaries
+                and such other required parties for the purpose of assessing the risk, risk assessment and for any other
+                such related matters. The undersigned authorizes the company to receive, possess, process and transfer
+                the data for the purpose of the pre insurance contract evaluation and for the purpose of servicing
+                insurance contracts.
+            </div>
+
+            <div class="declaration-box">
+                <div class="field-label-bold mb-1" style="font-size: 0.78rem;">Declaration</div>
+                <div style="font-size: 0.65rem; text-align: justify;">
+                    I/we hereby warrant the truth of the above statement and I/We have withheld no information
+                    whatsoever which might tend in any way to increase the risk of the Sri Lanka Insurance Corporation
+                    General Ltd. or influence the acceptance of this Proposal. I/we do hereby agree that in the event of
+                    this Proposal being accepted, this Proposal shall be the basis of the contract between me/us and the
+                    Sri Lanka Insurance Corporation General Ltd.
+                </div>
+
+                <div class="sig-row">
+                    <div class="sig-field">
+                        <div style="width: 100%; border-bottom: 1px dashed #888; margin-top: 20px;"></div>
+                        <span>Date</span>
+                    </div>
+                    <div class="sig-field">
+                        <div style="width: 100%; border-bottom: 1px dashed #888; margin-top: 20px;"></div>
+                        <span>Signature of Proposer</span>
+                    </div>
+                </div>
+            </div>
+
+            <div style="border: 1px solid var(--accent); padding: 0.5rem;">
+                <div
+                    style="text-align: center; font-weight: bold; text-decoration: underline; font-size: 0.78rem; margin-bottom: 0.5rem;">
+                    PRIVATE CAR INSURANCE COVERAGE</div>
+
+                <div style="font-weight: bold; font-size: 0.72rem; margin-bottom: 0.3rem;">COMPREHENSIVE</div>
+
+                <div class="field-row" style="align-items: start; font-size: 0.65rem; margin-bottom: 0.2rem;">
+                    <div style="width: 60px;">Section 1.</div>
+                    <div style="flex: 1;">
+                        Loss or Damage to the insured car by<br>
+                        (a) Accidental External means<br>
+                        (b) Fire, Burglary House-breaking or Theft<br>
+                        (c) Malicious Act.
+                    </div>
+                </div>
+
+                <div class="field-row" style="align-items: start; font-size: 0.65rem; margin-bottom: 0.2rem;">
+                    <div style="width: 60px;">Section 2</div>
+                    <div style="flex: 1;">
+                        <div style="display: flex;">
+                            <span style="margin-right: 5px;">a.</span>
+                            <span>Death or bodily injury to any person excepts where such death or injury arises out of
+                                and in the course of the employment of such person by the insured and excluding
+                                liability to any person being a member of the insured's household who is passenger in
+                                such motor car - unlimited.</span>
+                        </div>
+                        <div style="display: flex;">
+                            <span style="margin-right: 5px;">b.</span>
+                            <span>Damage to property other than property belonging to the insured or held in trust by or
+                                in the custody or control of the insured or any member of the insured's household - Rs.
+                                10 million</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field-row" style="align-items: start; font-size: 0.65rem; margin-bottom: 0.5rem;">
+                    <div style="width: 60px;">Section 3.</div>
+                    <div style="flex: 1;">
+                        Medical expenses incurred up to Rs. 1500/- in respect of injury sustained by insured or
+                        Occupants
+                    </div>
+                </div>
+
+                <div style="font-weight: bold; font-size: 0.65rem; margin-bottom: 0.2rem;">COMPULSORY EXCESS</div>
+                <div style="padding-left: 60px; font-size: 0.65rem; margin-bottom: 0.5rem;">
+                    Vehicles over 10 years old excess Rs. 1,000/-<br>
+                    Vehicles over 15 years old excess Rs. 1,500/-<br>
+                    Vehicles over 20 years old excess Rs. 2,000/-
+                </div>
+
+                <div style="font-weight: bold; font-size: 0.65rem; margin-bottom: 0.2rem;">DASH CAM REBATE</div>
+                <div style="padding-left: 60px; font-size: 0.65rem;">
+                    A rebate of 2.5% is allowed (maximum Rs. 2500/-). If given on would be recorded from the claim, if
+                    found out the dash cam is not available or not in working condition at the time of the accident and
+                    the vedio of the dash cam (in good condition) should be provided on request by the claims
+                    department.
+                </div>
+            </div>
+
+            <div style="text-align: right; font-size: 0.6rem; margin-top: 0.3rem;">
+                Form No. 3726 - E/A
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function clearForm() {
+            const inputs = document.querySelectorAll('input, textarea, select');
+            inputs.forEach(input => {
+                if (input.type === 'radio' || input.type === 'checkbox') {
+                    input.checked = false;
+                } else {
+                    input.value = '';
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
